@@ -1,0 +1,1861 @@
+array<string>::InsertAll()
+//scripts/1_CoreExt/proto\enscript.c
+000341:0x000343a8:	imove	i, 0x000000
+000341:0x000343b8:	jump	0x0343c8
+000341:0x000343c0:	inc	i
+000341:0x000343c8:	ncalli	array<string>.Count()
+000341:0x000343d0:	cmpi	i, ret
+000341:0x000343e0:	bge	0x034400
+000343:0x000343e8:	icall	array<string>.Get(i)
+000343:0x000343f0:	icall	array<string>.Insert(ret)
+000343:0x000343f8:	jump	0x0343c0
+000343:0x00034400:	rts
+array<string>::RemoveItem()
+000366:0x00034458:	icall	array<string>.Find(value)
+000366:0x00034460:	move	remove_index, ret
+000368:0x00034470:	cmpi	remove_index, _i0
+000368:0x00034480:	blt	0x034490
+000370:0x00034488:	ncalli	array<string>.Remove(remove_index)
+000370:0x00034490:	rts
+array<string>::Debug()
+000387:0x00034600:	ncalli	array<string>.Count()
+000387:0x00034608:	icall	ToString(ret)
+000387:0x00034610:	adds	@s01, _s'Array count: ', ret
+000387:0x00034620:	moves	@s00, @s01
+000387:0x00034630:	call	PrintString(@s00)
+000388:0x00034640:	imove	i, 0x000000
+000388:0x00034650:	jump	0x034660
+000388:0x00034658:	inc	i
+000388:0x00034660:	ncalli	array<string>.Count()
+000388:0x00034668:	cmpi	i, ret
+000388:0x00034678:	bge	0x034740
+000390:0x00034680:	icall	array<string>.Get(i)
+000390:0x00034688:	moves	item, ret
+000392:0x00034698:	cmps	item, _s''
+000392:0x000346a8:	beq	0x034738
+000394:0x000346b0:	icall	ToString(i)
+000394:0x000346b8:	adds	@s03, _s'[', ret
+000394:0x000346c8:	moves	@s02, @s03
+000394:0x000346d8:	adds	@s02, @s02, _s'] => '
+000394:0x000346e8:	moves	@s01, @s02
+000394:0x000346f8:	icall	ToString(item, _i0, _i0)
+000394:0x00034708:	adds	@s01, @s01, ret
+000394:0x00034718:	moves	@s00, @s01
+000394:0x00034728:	call	PrintString(@s00)
+000394:0x00034738:	jump	0x034658
+000394:0x00034740:	rts
+array<string>::GetRandomIndex()
+000411:0x00034768:	ncalli	array<string>.Count()
+000411:0x00034770:	cmpi	ret, _i0
+000411:0x00034780:	ble	0x0347b0
+000413:0x00034788:	ncalli	array<string>.Count()
+000413:0x00034790:	ncall	RandomInt(_i0, ret)
+000413:0x00034798:	move	ret, ret
+000413:0x000347a8:	rts
+000416:0x000347b0:	imove	ret, 0xffffffff
+000416:0x000347c0:	rts
+000416:0x000347c8:	rts
+array<string>::GetRandomElement()
+000430:0x000347d0:	call	array<string>.GetRandomIndex()
+000430:0x000347d8:	icall	array<string>.Get(ret)
+000430:0x000347e0:	moves	ret, ret
+000430:0x000347f0:	rts
+000430:0x000347f8:	rts
+array<string>::SwapItems()
+000435:0x00034848:	icall	array<string>.Get(item1_index)
+000435:0x00034850:	moves	item1, ret
+000436:0x00034860:	icall	array<string>.Get(item2_index)
+000436:0x00034868:	icall	array<string>.Set(item1_index, ret)
+000437:0x00034870:	icall	array<string>.Set(item2_index, item1)
+000437:0x00034878:	rts
+array<float>::InsertAll()
+000341:0x00034bc0:	imove	i, 0x000000
+000341:0x00034bd0:	jump	0x034be0
+000341:0x00034bd8:	inc	i
+000341:0x00034be0:	ncalli	array<float>.Count()
+000341:0x00034be8:	cmpi	i, ret
+000341:0x00034bf8:	bge	0x034c18
+000343:0x00034c00:	icall	array<float>.Get(i)
+000343:0x00034c08:	icall	array<float>.Insert(ret)
+000343:0x00034c10:	jump	0x034bd8
+000343:0x00034c18:	rts
+array<float>::RemoveItem()
+000366:0x00034c40:	icall	array<float>.Find(value)
+000366:0x00034c48:	move	remove_index, ret
+000368:0x00034c58:	cmpi	remove_index, _i0
+000368:0x00034c68:	blt	0x034c78
+000370:0x00034c70:	ncalli	array<float>.Remove(remove_index)
+000370:0x00034c78:	rts
+array<float>::Debug()
+000387:0x00034cc0:	ncalli	array<float>.Count()
+000387:0x00034cc8:	icall	ToString(ret)
+000387:0x00034cd0:	adds	@s01, _s'Array count: ', ret
+000387:0x00034ce0:	moves	@s00, @s01
+000387:0x00034cf0:	call	PrintString(@s00)
+000388:0x00034d00:	imove	i, 0x000000
+000388:0x00034d10:	jump	0x034d20
+000388:0x00034d18:	inc	i
+000388:0x00034d20:	ncalli	array<float>.Count()
+000388:0x00034d28:	cmpi	i, ret
+000388:0x00034d38:	bge	0x034e00
+000390:0x00034d40:	icall	array<float>.Get(i)
+000390:0x00034d48:	move	item, ret
+000392:0x00034d58:	cmpf	item, _f0.000000
+000392:0x00034d68:	beq	0x034df8
+000394:0x00034d70:	icall	ToString(i)
+000394:0x00034d78:	adds	@s03, _s'[', ret
+000394:0x00034d88:	moves	@s02, @s03
+000394:0x00034d98:	adds	@s02, @s02, _s'] => '
+000394:0x00034da8:	moves	@s01, @s02
+000394:0x00034db8:	icall	ToString(item, _i0, _i0)
+000394:0x00034dc8:	adds	@s01, @s01, ret
+000394:0x00034dd8:	moves	@s00, @s01
+000394:0x00034de8:	call	PrintString(@s00)
+000394:0x00034df8:	jump	0x034d18
+000394:0x00034e00:	rts
+array<float>::GetRandomIndex()
+000411:0x00034e08:	ncalli	array<float>.Count()
+000411:0x00034e10:	cmpi	ret, _i0
+000411:0x00034e20:	ble	0x034e50
+000413:0x00034e28:	ncalli	array<float>.Count()
+000413:0x00034e30:	ncall	RandomInt(_i0, ret)
+000413:0x00034e38:	move	ret, ret
+000413:0x00034e48:	rts
+000416:0x00034e50:	imove	ret, 0xffffffff
+000416:0x00034e60:	rts
+000416:0x00034e68:	rts
+array<float>::GetRandomElement()
+000430:0x00034e70:	call	array<float>.GetRandomIndex()
+000430:0x00034e78:	icall	array<float>.Get(ret)
+000430:0x00034e80:	move	ret, ret
+000430:0x00034e90:	rts
+000430:0x00034e98:	rts
+array<float>::SwapItems()
+000435:0x00034ec0:	icall	array<float>.Get(item1_index)
+000435:0x00034ec8:	move	item1, ret
+000436:0x00034ed8:	icall	array<float>.Get(item2_index)
+000436:0x00034ee0:	icall	array<float>.Set(item1_index, ret)
+000437:0x00034ee8:	icall	array<float>.Set(item2_index, item1)
+000437:0x00034ef0:	rts
+array<int>::InsertAll()
+000341:0x00035238:	imove	i, 0x000000
+000341:0x00035248:	jump	0x035258
+000341:0x00035250:	inc	i
+000341:0x00035258:	ncalli	array<int>.Count()
+000341:0x00035260:	cmpi	i, ret
+000341:0x00035270:	bge	0x035290
+000343:0x00035278:	icall	array<int>.Get(i)
+000343:0x00035280:	icall	array<int>.Insert(ret)
+000343:0x00035288:	jump	0x035250
+000343:0x00035290:	rts
+array<int>::RemoveItem()
+000366:0x000352b8:	icall	array<int>.Find(value)
+000366:0x000352c0:	move	remove_index, ret
+000368:0x000352d0:	cmpi	remove_index, _i0
+000368:0x000352e0:	blt	0x0352f0
+000370:0x000352e8:	ncalli	array<int>.Remove(remove_index)
+000370:0x000352f0:	rts
+array<int>::Debug()
+000387:0x00035338:	ncalli	array<int>.Count()
+000387:0x00035340:	icall	ToString(ret)
+000387:0x00035348:	adds	@s01, _s'Array count: ', ret
+000387:0x00035358:	moves	@s00, @s01
+000387:0x00035368:	call	PrintString(@s00)
+000388:0x00035378:	imove	i, 0x000000
+000388:0x00035388:	jump	0x035398
+000388:0x00035390:	inc	i
+000388:0x00035398:	ncalli	array<int>.Count()
+000388:0x000353a0:	cmpi	i, ret
+000388:0x000353b0:	bge	0x035478
+000390:0x000353b8:	icall	array<int>.Get(i)
+000390:0x000353c0:	move	item, ret
+000392:0x000353d0:	cmpi	item, _i0
+000392:0x000353e0:	beq	0x035470
+000394:0x000353e8:	icall	ToString(i)
+000394:0x000353f0:	adds	@s03, _s'[', ret
+000394:0x00035400:	moves	@s02, @s03
+000394:0x00035410:	adds	@s02, @s02, _s'] => '
+000394:0x00035420:	moves	@s01, @s02
+000394:0x00035430:	icall	ToString(item, _i0, _i0)
+000394:0x00035440:	adds	@s01, @s01, ret
+000394:0x00035450:	moves	@s00, @s01
+000394:0x00035460:	call	PrintString(@s00)
+000394:0x00035470:	jump	0x035390
+000394:0x00035478:	rts
+array<int>::GetRandomIndex()
+000411:0x00035480:	ncalli	array<int>.Count()
+000411:0x00035488:	cmpi	ret, _i0
+000411:0x00035498:	ble	0x0354c8
+000413:0x000354a0:	ncalli	array<int>.Count()
+000413:0x000354a8:	ncall	RandomInt(_i0, ret)
+000413:0x000354b0:	move	ret, ret
+000413:0x000354c0:	rts
+000416:0x000354c8:	imove	ret, 0xffffffff
+000416:0x000354d8:	rts
+000416:0x000354e0:	rts
+array<int>::GetRandomElement()
+000430:0x000354e8:	call	array<int>.GetRandomIndex()
+000430:0x000354f0:	icall	array<int>.Get(ret)
+000430:0x000354f8:	move	ret, ret
+000430:0x00035508:	rts
+000430:0x00035510:	rts
+array<int>::SwapItems()
+000435:0x00035538:	icall	array<int>.Get(item1_index)
+000435:0x00035540:	move	item1, ret
+000436:0x00035550:	icall	array<int>.Get(item2_index)
+000436:0x00035558:	icall	array<int>.Set(item1_index, ret)
+000437:0x00035560:	icall	array<int>.Set(item2_index, item1)
+000437:0x00035568:	rts
+array<bool>::InsertAll()
+000341:0x000358b0:	imove	i, 0x000000
+000341:0x000358c0:	jump	0x0358d0
+000341:0x000358c8:	inc	i
+000341:0x000358d0:	ncalli	array<bool>.Count()
+000341:0x000358d8:	cmpi	i, ret
+000341:0x000358e8:	bge	0x035908
+000343:0x000358f0:	icall	array<bool>.Get(i)
+000343:0x000358f8:	icall	array<bool>.Insert(ret)
+000343:0x00035900:	jump	0x0358c8
+000343:0x00035908:	rts
+array<bool>::RemoveItem()
+000366:0x00035930:	icall	array<bool>.Find(value)
+000366:0x00035938:	move	remove_index, ret
+000368:0x00035948:	cmpi	remove_index, _i0
+000368:0x00035958:	blt	0x035968
+000370:0x00035960:	ncalli	array<bool>.Remove(remove_index)
+000370:0x00035968:	rts
+array<bool>::Debug()
+000387:0x000359b0:	ncalli	array<bool>.Count()
+000387:0x000359b8:	icall	ToString(ret)
+000387:0x000359c0:	adds	@s01, _s'Array count: ', ret
+000387:0x000359d0:	moves	@s00, @s01
+000387:0x000359e0:	call	PrintString(@s00)
+000388:0x000359f0:	imove	i, 0x000000
+000388:0x00035a00:	jump	0x035a10
+000388:0x00035a08:	inc	i
+000388:0x00035a10:	ncalli	array<bool>.Count()
+000388:0x00035a18:	cmpi	i, ret
+000388:0x00035a28:	bge	0x035af0
+000390:0x00035a30:	icall	array<bool>.Get(i)
+000390:0x00035a38:	move	item, ret
+000392:0x00035a48:	cmpi	item, _i0
+000392:0x00035a58:	beq	0x035ae8
+000394:0x00035a60:	icall	ToString(i)
+000394:0x00035a68:	adds	@s03, _s'[', ret
+000394:0x00035a78:	moves	@s02, @s03
+000394:0x00035a88:	adds	@s02, @s02, _s'] => '
+000394:0x00035a98:	moves	@s01, @s02
+000394:0x00035aa8:	icall	ToString(item, _i0, _i0)
+000394:0x00035ab8:	adds	@s01, @s01, ret
+000394:0x00035ac8:	moves	@s00, @s01
+000394:0x00035ad8:	call	PrintString(@s00)
+000394:0x00035ae8:	jump	0x035a08
+000394:0x00035af0:	rts
+array<bool>::GetRandomIndex()
+000411:0x00035af8:	ncalli	array<bool>.Count()
+000411:0x00035b00:	cmpi	ret, _i0
+000411:0x00035b10:	ble	0x035b40
+000413:0x00035b18:	ncalli	array<bool>.Count()
+000413:0x00035b20:	ncall	RandomInt(_i0, ret)
+000413:0x00035b28:	move	ret, ret
+000413:0x00035b38:	rts
+000416:0x00035b40:	imove	ret, 0xffffffff
+000416:0x00035b50:	rts
+000416:0x00035b58:	rts
+array<bool>::GetRandomElement()
+000430:0x00035b60:	call	array<bool>.GetRandomIndex()
+000430:0x00035b68:	icall	array<bool>.Get(ret)
+000430:0x00035b70:	move	ret, ret
+000430:0x00035b80:	rts
+000430:0x00035b88:	rts
+array<bool>::SwapItems()
+000435:0x00035bb0:	icall	array<bool>.Get(item1_index)
+000435:0x00035bb8:	move	item1, ret
+000436:0x00035bc8:	icall	array<bool>.Get(item2_index)
+000436:0x00035bd0:	icall	array<bool>.Set(item1_index, ret)
+000437:0x00035bd8:	icall	array<bool>.Set(item2_index, item1)
+000437:0x00035be0:	rts
+array<Class>::InsertAll()
+000341:0x00035f28:	imove	i, 0x000000
+000341:0x00035f38:	jump	0x035f48
+000341:0x00035f40:	inc	i
+000341:0x00035f48:	ncalli	array<Class>.Count()
+000341:0x00035f50:	cmpi	i, ret
+000341:0x00035f60:	bge	0x035f80
+000343:0x00035f68:	icall	array<Class>.Get(i)
+000343:0x00035f70:	icall	array<Class>.Insert(ret)
+000343:0x00035f78:	jump	0x035f40
+000343:0x00035f80:	rts
+array<Class>::RemoveItem()
+000366:0x00035fa8:	icall	array<Class>.Find(value)
+000366:0x00035fb0:	move	remove_index, ret
+000368:0x00035fc0:	cmpi	remove_index, _i0
+000368:0x00035fd0:	blt	0x035fe0
+000370:0x00035fd8:	ncalli	array<Class>.Remove(remove_index)
+000370:0x00035fe0:	rts
+array<Class>::Debug()
+000387:0x00036028:	ncalli	array<Class>.Count()
+000387:0x00036030:	icall	ToString(ret)
+000387:0x00036038:	adds	@s01, _s'Array count: ', ret
+000387:0x00036048:	moves	@s00, @s01
+000387:0x00036058:	call	PrintString(@s00)
+000388:0x00036068:	imove	i, 0x000000
+000388:0x00036078:	jump	0x036088
+000388:0x00036080:	inc	i
+000388:0x00036088:	ncalli	array<Class>.Count()
+000388:0x00036090:	cmpi	i, ret
+000388:0x000360a0:	bge	0x036168
+000390:0x000360a8:	icall	array<Class>.Get(i)
+000390:0x000360b0:	movec	item, ret
+000392:0x000360c0:	cmpc	item, NULL
+000392:0x000360d0:	beq	0x036160
+000394:0x000360d8:	icall	ToString(i)
+000394:0x000360e0:	adds	@s03, _s'[', ret
+000394:0x000360f0:	moves	@s02, @s03
+000394:0x00036100:	adds	@s02, @s02, _s'] => '
+000394:0x00036110:	moves	@s01, @s02
+000394:0x00036120:	icall	ToString(item, _i0, _i0)
+000394:0x00036130:	adds	@s01, @s01, ret
+000394:0x00036140:	moves	@s00, @s01
+000394:0x00036150:	call	PrintString(@s00)
+000394:0x00036160:	jump	0x036080
+000394:0x00036168:	rts
+array<Class>::GetRandomIndex()
+000411:0x00036170:	ncalli	array<Class>.Count()
+000411:0x00036178:	cmpi	ret, _i0
+000411:0x00036188:	ble	0x0361b8
+000413:0x00036190:	ncalli	array<Class>.Count()
+000413:0x00036198:	ncall	RandomInt(_i0, ret)
+000413:0x000361a0:	move	ret, ret
+000413:0x000361b0:	rts
+000416:0x000361b8:	imove	ret, 0xffffffff
+000416:0x000361c8:	rts
+000416:0x000361d0:	rts
+array<Class>::GetRandomElement()
+000430:0x000361d8:	call	array<Class>.GetRandomIndex()
+000430:0x000361e0:	icall	array<Class>.Get(ret)
+000430:0x000361e8:	movec	ret, ret
+000430:0x000361f8:	rts
+000430:0x00036200:	rts
+array<Class>::SwapItems()
+000435:0x00036228:	icall	array<Class>.Get(item1_index)
+000435:0x00036230:	movec	item1, ret
+000436:0x00036240:	icall	array<Class>.Get(item2_index)
+000436:0x00036248:	icall	array<Class>.Set(item1_index, ret)
+000437:0x00036250:	icall	array<Class>.Set(item2_index, item1)
+000437:0x00036258:	rts
+array<vector>::InsertAll()
+000341:0x00036620:	imove	i, 0x000000
+000341:0x00036630:	jump	0x036640
+000341:0x00036638:	inc	i
+000341:0x00036640:	ncalli	array<vector>.Count()
+000341:0x00036648:	cmpi	i, ret
+000341:0x00036658:	bge	0x036678
+000343:0x00036660:	icall	array<vector>.Get(i)
+000343:0x00036668:	icall	array<vector>.Insert(ret)
+000343:0x00036670:	jump	0x036638
+000343:0x00036678:	rts
+array<vector>::RemoveItem()
+000366:0x000366a0:	icall	array<vector>.Find(value)
+000366:0x000366a8:	move	remove_index, ret
+000368:0x000366b8:	cmpi	remove_index, _i0
+000368:0x000366c8:	blt	0x0366d8
+000370:0x000366d0:	ncalli	array<vector>.Remove(remove_index)
+000370:0x000366d8:	rts
+array<vector>::Debug()
+000387:0x00036730:	ncalli	array<vector>.Count()
+000387:0x00036738:	icall	ToString(ret)
+000387:0x00036740:	adds	@s01, _s'Array count: ', ret
+000387:0x00036750:	moves	@s00, @s01
+000387:0x00036760:	call	PrintString(@s00)
+000388:0x00036770:	imove	i, 0x000000
+000388:0x00036780:	jump	0x036790
+000388:0x00036788:	inc	i
+000388:0x00036790:	ncalli	array<vector>.Count()
+000388:0x00036798:	cmpi	i, ret
+000388:0x000367a8:	bge	0x036870
+000390:0x000367b0:	icall	array<vector>.Get(i)
+000390:0x000367b8:	movev	item, ret
+000392:0x000367c8:	cmpv	item, _v<0.000000,0.000000,0.000000>
+000392:0x000367d8:	beq	0x036868
+000394:0x000367e0:	icall	ToString(i)
+000394:0x000367e8:	adds	@s03, _s'[', ret
+000394:0x000367f8:	moves	@s02, @s03
+000394:0x00036808:	adds	@s02, @s02, _s'] => '
+000394:0x00036818:	moves	@s01, @s02
+000394:0x00036828:	icall	ToString(item, _i0, _i0)
+000394:0x00036838:	adds	@s01, @s01, ret
+000394:0x00036848:	moves	@s00, @s01
+000394:0x00036858:	call	PrintString(@s00)
+000394:0x00036868:	jump	0x036788
+000394:0x00036870:	rts
+array<vector>::GetRandomIndex()
+000411:0x00036878:	ncalli	array<vector>.Count()
+000411:0x00036880:	cmpi	ret, _i0
+000411:0x00036890:	ble	0x0368c0
+000413:0x00036898:	ncalli	array<vector>.Count()
+000413:0x000368a0:	ncall	RandomInt(_i0, ret)
+000413:0x000368a8:	move	ret, ret
+000413:0x000368b8:	rts
+000416:0x000368c0:	imove	ret, 0xffffffff
+000416:0x000368d0:	rts
+000416:0x000368d8:	rts
+array<vector>::GetRandomElement()
+000430:0x000368e0:	call	array<vector>.GetRandomIndex()
+000430:0x000368e8:	icall	array<vector>.Get(ret)
+000430:0x000368f0:	movev	ret, ret
+000430:0x00036900:	rts
+000430:0x00036908:	rts
+array<vector>::SwapItems()
+000435:0x00036940:	icall	array<vector>.Get(item1_index)
+000435:0x00036948:	movev	item1, ret
+000436:0x00036958:	icall	array<vector>.Get(item2_index)
+000436:0x00036960:	icall	array<vector>.Set(item1_index, ret)
+000437:0x00036968:	icall	array<vector>.Set(item2_index, item1)
+000437:0x00036970:	rts
+array<typename>::InsertAll()
+000341:0x00036cb8:	imove	i, 0x000000
+000341:0x00036cc8:	jump	0x036cd8
+000341:0x00036cd0:	inc	i
+000341:0x00036cd8:	ncalli	array<typename>.Count()
+000341:0x00036ce0:	cmpi	i, ret
+000341:0x00036cf0:	bge	0x036d10
+000343:0x00036cf8:	icall	array<typename>.Get(i)
+000343:0x00036d00:	icall	array<typename>.Insert(ret)
+000343:0x00036d08:	jump	0x036cd0
+000343:0x00036d10:	rts
+array<typename>::RemoveItem()
+000366:0x00036d38:	icall	array<typename>.Find(value)
+000366:0x00036d40:	move	remove_index, ret
+000368:0x00036d50:	cmpi	remove_index, _i0
+000368:0x00036d60:	blt	0x036d70
+000370:0x00036d68:	ncalli	array<typename>.Remove(remove_index)
+000370:0x00036d70:	rts
+array<typename>::Debug()
+000387:0x00036db8:	ncalli	array<typename>.Count()
+000387:0x00036dc0:	icall	ToString(ret)
+000387:0x00036dc8:	adds	@s01, _s'Array count: ', ret
+000387:0x00036dd8:	moves	@s00, @s01
+000387:0x00036de8:	call	PrintString(@s00)
+000388:0x00036df8:	imove	i, 0x000000
+000388:0x00036e08:	jump	0x036e18
+000388:0x00036e10:	inc	i
+000388:0x00036e18:	ncalli	array<typename>.Count()
+000388:0x00036e20:	cmpi	i, ret
+000388:0x00036e30:	bge	0x036ef8
+000390:0x00036e38:	icall	array<typename>.Get(i)
+000390:0x00036e40:	movea	item, ret
+000392:0x00036e50:	cmpc	item, NULL
+000392:0x00036e60:	beq	0x036ef0
+000394:0x00036e68:	icall	ToString(i)
+000394:0x00036e70:	adds	@s03, _s'[', ret
+000394:0x00036e80:	moves	@s02, @s03
+000394:0x00036e90:	adds	@s02, @s02, _s'] => '
+000394:0x00036ea0:	moves	@s01, @s02
+000394:0x00036eb0:	icall	ToString(item, _i0, _i0)
+000394:0x00036ec0:	adds	@s01, @s01, ret
+000394:0x00036ed0:	moves	@s00, @s01
+000394:0x00036ee0:	call	PrintString(@s00)
+000394:0x00036ef0:	jump	0x036e10
+000394:0x00036ef8:	rts
+array<typename>::GetRandomIndex()
+000411:0x00036f00:	ncalli	array<typename>.Count()
+000411:0x00036f08:	cmpi	ret, _i0
+000411:0x00036f18:	ble	0x036f48
+000413:0x00036f20:	ncalli	array<typename>.Count()
+000413:0x00036f28:	ncall	RandomInt(_i0, ret)
+000413:0x00036f30:	move	ret, ret
+000413:0x00036f40:	rts
+000416:0x00036f48:	imove	ret, 0xffffffff
+000416:0x00036f58:	rts
+000416:0x00036f60:	rts
+array<typename>::GetRandomElement()
+000430:0x00036f68:	call	array<typename>.GetRandomIndex()
+000430:0x00036f70:	icall	array<typename>.Get(ret)
+000430:0x00036f78:	movea	ret, ret
+000430:0x00036f88:	rts
+000430:0x00036f90:	rts
+array<typename>::SwapItems()
+000435:0x00036fb8:	icall	array<typename>.Get(item1_index)
+000435:0x00036fc0:	movea	item1, ret
+000436:0x00036fd0:	icall	array<typename>.Get(item2_index)
+000436:0x00036fd8:	icall	array<typename>.Set(item1_index, ret)
+000437:0x00036fe0:	icall	array<typename>.Set(item2_index, item1)
+000437:0x00036fe8:	rts
+map<int,float>::ReplaceKey()
+000584:0x00037e80:	icall	map<int,float>.Contains(old_key)
+000584:0x00037e88:	cmpi	ret, _i0
+000584:0x00037e98:	beq	0x037eb8
+000586:0x00037ea0:	icall	map<int,float>.Get(old_key)
+000586:0x00037ea8:	icall	map<int,float>.Set(new_key, ret)
+000587:0x00037eb0:	icall	map<int,float>.Remove(old_key)
+000587:0x00037eb8:	rts
+map<int,float>::GetKeyByValue()
+000594:0x00037f00:	imove	i, 0x000000
+000594:0x00037f10:	jump	0x037f20
+000594:0x00037f18:	inc	i
+000594:0x00037f20:	ncalli	map<int,float>.Count()
+000594:0x00037f28:	cmpi	i, ret
+000594:0x00037f38:	bge	0x037f88
+000596:0x00037f40:	icall	map<int,float>.GetElement(i)
+000596:0x00037f48:	cmpf	ret, value
+000596:0x00037f58:	bne	0x037f80
+000598:0x00037f60:	icall	map<int,float>.GetKey(i)
+000598:0x00037f68:	move	ret, ret
+000599:0x00037f78:	jump	0x037f88
+000599:0x00037f80:	jump	0x037f18
+000603:0x00037f88:	move	ret, ret
+000603:0x00037f98:	rts
+000603:0x00037fa0:	rts
+map<int,int>::ReplaceKey()
+000584:0x00038388:	icall	map<int,int>.Contains(old_key)
+000584:0x00038390:	cmpi	ret, _i0
+000584:0x000383a0:	beq	0x0383c0
+000586:0x000383a8:	icall	map<int,int>.Get(old_key)
+000586:0x000383b0:	icall	map<int,int>.Set(new_key, ret)
+000587:0x000383b8:	icall	map<int,int>.Remove(old_key)
+000587:0x000383c0:	rts
+map<int,int>::GetKeyByValue()
+000594:0x00038408:	imove	i, 0x000000
+000594:0x00038418:	jump	0x038428
+000594:0x00038420:	inc	i
+000594:0x00038428:	ncalli	map<int,int>.Count()
+000594:0x00038430:	cmpi	i, ret
+000594:0x00038440:	bge	0x038490
+000596:0x00038448:	icall	map<int,int>.GetElement(i)
+000596:0x00038450:	cmpi	ret, value
+000596:0x00038460:	bne	0x038488
+000598:0x00038468:	icall	map<int,int>.GetKey(i)
+000598:0x00038470:	move	ret, ret
+000599:0x00038480:	jump	0x038490
+000599:0x00038488:	jump	0x038420
+000603:0x00038490:	move	ret, ret
+000603:0x000384a0:	rts
+000603:0x000384a8:	rts
+map<int,string>::ReplaceKey()
+000584:0x00038890:	icall	map<int,string>.Contains(old_key)
+000584:0x00038898:	cmpi	ret, _i0
+000584:0x000388a8:	beq	0x0388c8
+000586:0x000388b0:	icall	map<int,string>.Get(old_key)
+000586:0x000388b8:	icall	map<int,string>.Set(new_key, ret)
+000587:0x000388c0:	icall	map<int,string>.Remove(old_key)
+000587:0x000388c8:	rts
+map<int,string>::GetKeyByValue()
+000594:0x00038910:	imove	i, 0x000000
+000594:0x00038920:	jump	0x038930
+000594:0x00038928:	inc	i
+000594:0x00038930:	ncalli	map<int,string>.Count()
+000594:0x00038938:	cmpi	i, ret
+000594:0x00038948:	bge	0x038998
+000596:0x00038950:	icall	map<int,string>.GetElement(i)
+000596:0x00038958:	cmps	ret, value
+000596:0x00038968:	bne	0x038990
+000598:0x00038970:	icall	map<int,string>.GetKey(i)
+000598:0x00038978:	move	ret, ret
+000599:0x00038988:	jump	0x038998
+000599:0x00038990:	jump	0x038928
+000603:0x00038998:	move	ret, ret
+000603:0x000389a8:	rts
+000603:0x000389b0:	rts
+map<int,Class>::ReplaceKey()
+000584:0x00038d98:	icall	map<int,Class>.Contains(old_key)
+000584:0x00038da0:	cmpi	ret, _i0
+000584:0x00038db0:	beq	0x038dd0
+000586:0x00038db8:	icall	map<int,Class>.Get(old_key)
+000586:0x00038dc0:	icall	map<int,Class>.Set(new_key, ret)
+000587:0x00038dc8:	icall	map<int,Class>.Remove(old_key)
+000587:0x00038dd0:	rts
+map<int,Class>::GetKeyByValue()
+000594:0x00038e18:	imove	i, 0x000000
+000594:0x00038e28:	jump	0x038e38
+000594:0x00038e30:	inc	i
+000594:0x00038e38:	ncalli	map<int,Class>.Count()
+000594:0x00038e40:	cmpi	i, ret
+000594:0x00038e50:	bge	0x038ea0
+000596:0x00038e58:	icall	map<int,Class>.GetElement(i)
+000596:0x00038e60:	cmpc	ret, value
+000596:0x00038e70:	bne	0x038e98
+000598:0x00038e78:	icall	map<int,Class>.GetKey(i)
+000598:0x00038e80:	move	ret, ret
+000599:0x00038e90:	jump	0x038ea0
+000599:0x00038e98:	jump	0x038e30
+000603:0x00038ea0:	move	ret, ret
+000603:0x00038eb0:	rts
+000603:0x00038eb8:	rts
+map<int,typename>::ReplaceKey()
+000584:0x000392a0:	icall	map<int,typename>.Contains(old_key)
+000584:0x000392a8:	cmpi	ret, _i0
+000584:0x000392b8:	beq	0x0392d8
+000586:0x000392c0:	icall	map<int,typename>.Get(old_key)
+000586:0x000392c8:	icall	map<int,typename>.Set(new_key, ret)
+000587:0x000392d0:	icall	map<int,typename>.Remove(old_key)
+000587:0x000392d8:	rts
+map<int,typename>::GetKeyByValue()
+000594:0x00039320:	imove	i, 0x000000
+000594:0x00039330:	jump	0x039340
+000594:0x00039338:	inc	i
+000594:0x00039340:	ncalli	map<int,typename>.Count()
+000594:0x00039348:	cmpi	i, ret
+000594:0x00039358:	bge	0x0393a8
+000596:0x00039360:	icall	map<int,typename>.GetElement(i)
+000596:0x00039368:	cmpc	ret, value
+000596:0x00039378:	bne	0x0393a0
+000598:0x00039380:	icall	map<int,typename>.GetKey(i)
+000598:0x00039388:	move	ret, ret
+000599:0x00039398:	jump	0x0393a8
+000599:0x000393a0:	jump	0x039338
+000603:0x000393a8:	move	ret, ret
+000603:0x000393b8:	rts
+000603:0x000393c0:	rts
+map<int,vector>::ReplaceKey()
+000584:0x00039808:	icall	map<int,vector>.Contains(old_key)
+000584:0x00039810:	cmpi	ret, _i0
+000584:0x00039820:	beq	0x039840
+000586:0x00039828:	icall	map<int,vector>.Get(old_key)
+000586:0x00039830:	icall	map<int,vector>.Set(new_key, ret)
+000587:0x00039838:	icall	map<int,vector>.Remove(old_key)
+000587:0x00039840:	rts
+map<int,vector>::GetKeyByValue()
+000594:0x00039888:	imove	i, 0x000000
+000594:0x00039898:	jump	0x0398a8
+000594:0x000398a0:	inc	i
+000594:0x000398a8:	ncalli	map<int,vector>.Count()
+000594:0x000398b0:	cmpi	i, ret
+000594:0x000398c0:	bge	0x039910
+000596:0x000398c8:	icall	map<int,vector>.GetElement(i)
+000596:0x000398d0:	cmpv	ret, value
+000596:0x000398e0:	bne	0x039908
+000598:0x000398e8:	icall	map<int,vector>.GetKey(i)
+000598:0x000398f0:	move	ret, ret
+000599:0x00039900:	jump	0x039910
+000599:0x00039908:	jump	0x0398a0
+000603:0x00039910:	move	ret, ret
+000603:0x00039920:	rts
+000603:0x00039928:	rts
+map<string,float>::ReplaceKey()
+000584:0x00039d10:	icall	map<string,float>.Contains(old_key)
+000584:0x00039d18:	cmpi	ret, _i0
+000584:0x00039d28:	beq	0x039d48
+000586:0x00039d30:	icall	map<string,float>.Get(old_key)
+000586:0x00039d38:	icall	map<string,float>.Set(new_key, ret)
+000587:0x00039d40:	icall	map<string,float>.Remove(old_key)
+000587:0x00039d48:	rts
+map<string,float>::GetKeyByValue()
+000594:0x00039d90:	imove	i, 0x000000
+000594:0x00039da0:	jump	0x039db0
+000594:0x00039da8:	inc	i
+000594:0x00039db0:	ncalli	map<string,float>.Count()
+000594:0x00039db8:	cmpi	i, ret
+000594:0x00039dc8:	bge	0x039e18
+000596:0x00039dd0:	icall	map<string,float>.GetElement(i)
+000596:0x00039dd8:	cmpf	ret, value
+000596:0x00039de8:	bne	0x039e10
+000598:0x00039df0:	icall	map<string,float>.GetKey(i)
+000598:0x00039df8:	moves	ret, ret
+000599:0x00039e08:	jump	0x039e18
+000599:0x00039e10:	jump	0x039da8
+000603:0x00039e18:	moves	ret, ret
+000603:0x00039e28:	rts
+000603:0x00039e30:	rts
+map<string,int>::ReplaceKey()
+000584:0x0003a218:	icall	map<string,int>.Contains(old_key)
+000584:0x0003a220:	cmpi	ret, _i0
+000584:0x0003a230:	beq	0x03a250
+000586:0x0003a238:	icall	map<string,int>.Get(old_key)
+000586:0x0003a240:	icall	map<string,int>.Set(new_key, ret)
+000587:0x0003a248:	icall	map<string,int>.Remove(old_key)
+000587:0x0003a250:	rts
+map<string,int>::GetKeyByValue()
+000594:0x0003a298:	imove	i, 0x000000
+000594:0x0003a2a8:	jump	0x03a2b8
+000594:0x0003a2b0:	inc	i
+000594:0x0003a2b8:	ncalli	map<string,int>.Count()
+000594:0x0003a2c0:	cmpi	i, ret
+000594:0x0003a2d0:	bge	0x03a320
+000596:0x0003a2d8:	icall	map<string,int>.GetElement(i)
+000596:0x0003a2e0:	cmpi	ret, value
+000596:0x0003a2f0:	bne	0x03a318
+000598:0x0003a2f8:	icall	map<string,int>.GetKey(i)
+000598:0x0003a300:	moves	ret, ret
+000599:0x0003a310:	jump	0x03a320
+000599:0x0003a318:	jump	0x03a2b0
+000603:0x0003a320:	moves	ret, ret
+000603:0x0003a330:	rts
+000603:0x0003a338:	rts
+map<string,string>::ReplaceKey()
+000584:0x0003a720:	icall	map<string,string>.Contains(old_key)
+000584:0x0003a728:	cmpi	ret, _i0
+000584:0x0003a738:	beq	0x03a758
+000586:0x0003a740:	icall	map<string,string>.Get(old_key)
+000586:0x0003a748:	icall	map<string,string>.Set(new_key, ret)
+000587:0x0003a750:	icall	map<string,string>.Remove(old_key)
+000587:0x0003a758:	rts
+map<string,string>::GetKeyByValue()
+000594:0x0003a7a0:	imove	i, 0x000000
+000594:0x0003a7b0:	jump	0x03a7c0
+000594:0x0003a7b8:	inc	i
+000594:0x0003a7c0:	ncalli	map<string,string>.Count()
+000594:0x0003a7c8:	cmpi	i, ret
+000594:0x0003a7d8:	bge	0x03a828
+000596:0x0003a7e0:	icall	map<string,string>.GetElement(i)
+000596:0x0003a7e8:	cmps	ret, value
+000596:0x0003a7f8:	bne	0x03a820
+000598:0x0003a800:	icall	map<string,string>.GetKey(i)
+000598:0x0003a808:	moves	ret, ret
+000599:0x0003a818:	jump	0x03a828
+000599:0x0003a820:	jump	0x03a7b8
+000603:0x0003a828:	moves	ret, ret
+000603:0x0003a838:	rts
+000603:0x0003a840:	rts
+map<string,Class>::ReplaceKey()
+000584:0x0003ac28:	icall	map<string,Class>.Contains(old_key)
+000584:0x0003ac30:	cmpi	ret, _i0
+000584:0x0003ac40:	beq	0x03ac60
+000586:0x0003ac48:	icall	map<string,Class>.Get(old_key)
+000586:0x0003ac50:	icall	map<string,Class>.Set(new_key, ret)
+000587:0x0003ac58:	icall	map<string,Class>.Remove(old_key)
+000587:0x0003ac60:	rts
+map<string,Class>::GetKeyByValue()
+000594:0x0003aca8:	imove	i, 0x000000
+000594:0x0003acb8:	jump	0x03acc8
+000594:0x0003acc0:	inc	i
+000594:0x0003acc8:	ncalli	map<string,Class>.Count()
+000594:0x0003acd0:	cmpi	i, ret
+000594:0x0003ace0:	bge	0x03ad30
+000596:0x0003ace8:	icall	map<string,Class>.GetElement(i)
+000596:0x0003acf0:	cmpc	ret, value
+000596:0x0003ad00:	bne	0x03ad28
+000598:0x0003ad08:	icall	map<string,Class>.GetKey(i)
+000598:0x0003ad10:	moves	ret, ret
+000599:0x0003ad20:	jump	0x03ad30
+000599:0x0003ad28:	jump	0x03acc0
+000603:0x0003ad30:	moves	ret, ret
+000603:0x0003ad40:	rts
+000603:0x0003ad48:	rts
+map<string,typename>::ReplaceKey()
+000584:0x0003b130:	icall	map<string,typename>.Contains(old_key)
+000584:0x0003b138:	cmpi	ret, _i0
+000584:0x0003b148:	beq	0x03b168
+000586:0x0003b150:	icall	map<string,typename>.Get(old_key)
+000586:0x0003b158:	icall	map<string,typename>.Set(new_key, ret)
+000587:0x0003b160:	icall	map<string,typename>.Remove(old_key)
+000587:0x0003b168:	rts
+map<string,typename>::GetKeyByValue()
+000594:0x0003b1b0:	imove	i, 0x000000
+000594:0x0003b1c0:	jump	0x03b1d0
+000594:0x0003b1c8:	inc	i
+000594:0x0003b1d0:	ncalli	map<string,typename>.Count()
+000594:0x0003b1d8:	cmpi	i, ret
+000594:0x0003b1e8:	bge	0x03b238
+000596:0x0003b1f0:	icall	map<string,typename>.GetElement(i)
+000596:0x0003b1f8:	cmpc	ret, value
+000596:0x0003b208:	bne	0x03b230
+000598:0x0003b210:	icall	map<string,typename>.GetKey(i)
+000598:0x0003b218:	moves	ret, ret
+000599:0x0003b228:	jump	0x03b238
+000599:0x0003b230:	jump	0x03b1c8
+000603:0x0003b238:	moves	ret, ret
+000603:0x0003b248:	rts
+000603:0x0003b250:	rts
+map<string,vector>::ReplaceKey()
+000584:0x0003b698:	icall	map<string,vector>.Contains(old_key)
+000584:0x0003b6a0:	cmpi	ret, _i0
+000584:0x0003b6b0:	beq	0x03b6d0
+000586:0x0003b6b8:	icall	map<string,vector>.Get(old_key)
+000586:0x0003b6c0:	icall	map<string,vector>.Set(new_key, ret)
+000587:0x0003b6c8:	icall	map<string,vector>.Remove(old_key)
+000587:0x0003b6d0:	rts
+map<string,vector>::GetKeyByValue()
+000594:0x0003b718:	imove	i, 0x000000
+000594:0x0003b728:	jump	0x03b738
+000594:0x0003b730:	inc	i
+000594:0x0003b738:	ncalli	map<string,vector>.Count()
+000594:0x0003b740:	cmpi	i, ret
+000594:0x0003b750:	bge	0x03b7a0
+000596:0x0003b758:	icall	map<string,vector>.GetElement(i)
+000596:0x0003b760:	cmpv	ret, value
+000596:0x0003b770:	bne	0x03b798
+000598:0x0003b778:	icall	map<string,vector>.GetKey(i)
+000598:0x0003b780:	moves	ret, ret
+000599:0x0003b790:	jump	0x03b7a0
+000599:0x0003b798:	jump	0x03b730
+000603:0x0003b7a0:	moves	ret, ret
+000603:0x0003b7b0:	rts
+000603:0x0003b7b8:	rts
+map<Class,float>::ReplaceKey()
+000584:0x0003bba0:	icall	map<Class,float>.Contains(old_key)
+000584:0x0003bba8:	cmpi	ret, _i0
+000584:0x0003bbb8:	beq	0x03bbd8
+000586:0x0003bbc0:	icall	map<Class,float>.Get(old_key)
+000586:0x0003bbc8:	icall	map<Class,float>.Set(new_key, ret)
+000587:0x0003bbd0:	icall	map<Class,float>.Remove(old_key)
+000587:0x0003bbd8:	rts
+map<Class,float>::GetKeyByValue()
+000594:0x0003bc20:	imove	i, 0x000000
+000594:0x0003bc30:	jump	0x03bc40
+000594:0x0003bc38:	inc	i
+000594:0x0003bc40:	ncalli	map<Class,float>.Count()
+000594:0x0003bc48:	cmpi	i, ret
+000594:0x0003bc58:	bge	0x03bca8
+000596:0x0003bc60:	icall	map<Class,float>.GetElement(i)
+000596:0x0003bc68:	cmpf	ret, value
+000596:0x0003bc78:	bne	0x03bca0
+000598:0x0003bc80:	icall	map<Class,float>.GetKey(i)
+000598:0x0003bc88:	movec	ret, ret
+000599:0x0003bc98:	jump	0x03bca8
+000599:0x0003bca0:	jump	0x03bc38
+000603:0x0003bca8:	movec	ret, ret
+000603:0x0003bcb8:	rts
+000603:0x0003bcc0:	rts
+map<Class,int>::ReplaceKey()
+000584:0x0003c0a8:	icall	map<Class,int>.Contains(old_key)
+000584:0x0003c0b0:	cmpi	ret, _i0
+000584:0x0003c0c0:	beq	0x03c0e0
+000586:0x0003c0c8:	icall	map<Class,int>.Get(old_key)
+000586:0x0003c0d0:	icall	map<Class,int>.Set(new_key, ret)
+000587:0x0003c0d8:	icall	map<Class,int>.Remove(old_key)
+000587:0x0003c0e0:	rts
+map<Class,int>::GetKeyByValue()
+000594:0x0003c128:	imove	i, 0x000000
+000594:0x0003c138:	jump	0x03c148
+000594:0x0003c140:	inc	i
+000594:0x0003c148:	ncalli	map<Class,int>.Count()
+000594:0x0003c150:	cmpi	i, ret
+000594:0x0003c160:	bge	0x03c1b0
+000596:0x0003c168:	icall	map<Class,int>.GetElement(i)
+000596:0x0003c170:	cmpi	ret, value
+000596:0x0003c180:	bne	0x03c1a8
+000598:0x0003c188:	icall	map<Class,int>.GetKey(i)
+000598:0x0003c190:	movec	ret, ret
+000599:0x0003c1a0:	jump	0x03c1b0
+000599:0x0003c1a8:	jump	0x03c140
+000603:0x0003c1b0:	movec	ret, ret
+000603:0x0003c1c0:	rts
+000603:0x0003c1c8:	rts
+map<Class,string>::ReplaceKey()
+000584:0x0003c5b0:	icall	map<Class,string>.Contains(old_key)
+000584:0x0003c5b8:	cmpi	ret, _i0
+000584:0x0003c5c8:	beq	0x03c5e8
+000586:0x0003c5d0:	icall	map<Class,string>.Get(old_key)
+000586:0x0003c5d8:	icall	map<Class,string>.Set(new_key, ret)
+000587:0x0003c5e0:	icall	map<Class,string>.Remove(old_key)
+000587:0x0003c5e8:	rts
+map<Class,string>::GetKeyByValue()
+000594:0x0003c630:	imove	i, 0x000000
+000594:0x0003c640:	jump	0x03c650
+000594:0x0003c648:	inc	i
+000594:0x0003c650:	ncalli	map<Class,string>.Count()
+000594:0x0003c658:	cmpi	i, ret
+000594:0x0003c668:	bge	0x03c6b8
+000596:0x0003c670:	icall	map<Class,string>.GetElement(i)
+000596:0x0003c678:	cmps	ret, value
+000596:0x0003c688:	bne	0x03c6b0
+000598:0x0003c690:	icall	map<Class,string>.GetKey(i)
+000598:0x0003c698:	movec	ret, ret
+000599:0x0003c6a8:	jump	0x03c6b8
+000599:0x0003c6b0:	jump	0x03c648
+000603:0x0003c6b8:	movec	ret, ret
+000603:0x0003c6c8:	rts
+000603:0x0003c6d0:	rts
+map<Class,Class>::ReplaceKey()
+000584:0x0003cab8:	icall	map<Class,Class>.Contains(old_key)
+000584:0x0003cac0:	cmpi	ret, _i0
+000584:0x0003cad0:	beq	0x03caf0
+000586:0x0003cad8:	icall	map<Class,Class>.Get(old_key)
+000586:0x0003cae0:	icall	map<Class,Class>.Set(new_key, ret)
+000587:0x0003cae8:	icall	map<Class,Class>.Remove(old_key)
+000587:0x0003caf0:	rts
+map<Class,Class>::GetKeyByValue()
+000594:0x0003cb38:	imove	i, 0x000000
+000594:0x0003cb48:	jump	0x03cb58
+000594:0x0003cb50:	inc	i
+000594:0x0003cb58:	ncalli	map<Class,Class>.Count()
+000594:0x0003cb60:	cmpi	i, ret
+000594:0x0003cb70:	bge	0x03cbc0
+000596:0x0003cb78:	icall	map<Class,Class>.GetElement(i)
+000596:0x0003cb80:	cmpc	ret, value
+000596:0x0003cb90:	bne	0x03cbb8
+000598:0x0003cb98:	icall	map<Class,Class>.GetKey(i)
+000598:0x0003cba0:	movec	ret, ret
+000599:0x0003cbb0:	jump	0x03cbc0
+000599:0x0003cbb8:	jump	0x03cb50
+000603:0x0003cbc0:	movec	ret, ret
+000603:0x0003cbd0:	rts
+000603:0x0003cbd8:	rts
+map<Class,typename>::ReplaceKey()
+000584:0x0003cfc0:	icall	map<Class,typename>.Contains(old_key)
+000584:0x0003cfc8:	cmpi	ret, _i0
+000584:0x0003cfd8:	beq	0x03cff8
+000586:0x0003cfe0:	icall	map<Class,typename>.Get(old_key)
+000586:0x0003cfe8:	icall	map<Class,typename>.Set(new_key, ret)
+000587:0x0003cff0:	icall	map<Class,typename>.Remove(old_key)
+000587:0x0003cff8:	rts
+map<Class,typename>::GetKeyByValue()
+000594:0x0003d040:	imove	i, 0x000000
+000594:0x0003d050:	jump	0x03d060
+000594:0x0003d058:	inc	i
+000594:0x0003d060:	ncalli	map<Class,typename>.Count()
+000594:0x0003d068:	cmpi	i, ret
+000594:0x0003d078:	bge	0x03d0c8
+000596:0x0003d080:	icall	map<Class,typename>.GetElement(i)
+000596:0x0003d088:	cmpc	ret, value
+000596:0x0003d098:	bne	0x03d0c0
+000598:0x0003d0a0:	icall	map<Class,typename>.GetKey(i)
+000598:0x0003d0a8:	movec	ret, ret
+000599:0x0003d0b8:	jump	0x03d0c8
+000599:0x0003d0c0:	jump	0x03d058
+000603:0x0003d0c8:	movec	ret, ret
+000603:0x0003d0d8:	rts
+000603:0x0003d0e0:	rts
+map<Class,vector>::ReplaceKey()
+000584:0x0003d528:	icall	map<Class,vector>.Contains(old_key)
+000584:0x0003d530:	cmpi	ret, _i0
+000584:0x0003d540:	beq	0x03d560
+000586:0x0003d548:	icall	map<Class,vector>.Get(old_key)
+000586:0x0003d550:	icall	map<Class,vector>.Set(new_key, ret)
+000587:0x0003d558:	icall	map<Class,vector>.Remove(old_key)
+000587:0x0003d560:	rts
+map<Class,vector>::GetKeyByValue()
+000594:0x0003d5a8:	imove	i, 0x000000
+000594:0x0003d5b8:	jump	0x03d5c8
+000594:0x0003d5c0:	inc	i
+000594:0x0003d5c8:	ncalli	map<Class,vector>.Count()
+000594:0x0003d5d0:	cmpi	i, ret
+000594:0x0003d5e0:	bge	0x03d630
+000596:0x0003d5e8:	icall	map<Class,vector>.GetElement(i)
+000596:0x0003d5f0:	cmpv	ret, value
+000596:0x0003d600:	bne	0x03d628
+000598:0x0003d608:	icall	map<Class,vector>.GetKey(i)
+000598:0x0003d610:	movec	ret, ret
+000599:0x0003d620:	jump	0x03d630
+000599:0x0003d628:	jump	0x03d5c0
+000603:0x0003d630:	movec	ret, ret
+000603:0x0003d640:	rts
+000603:0x0003d648:	rts
+map<typename,float>::ReplaceKey()
+000584:0x0003da30:	icall	map<typename,float>.Contains(old_key)
+000584:0x0003da38:	cmpi	ret, _i0
+000584:0x0003da48:	beq	0x03da68
+000586:0x0003da50:	icall	map<typename,float>.Get(old_key)
+000586:0x0003da58:	icall	map<typename,float>.Set(new_key, ret)
+000587:0x0003da60:	icall	map<typename,float>.Remove(old_key)
+000587:0x0003da68:	rts
+map<typename,float>::GetKeyByValue()
+000594:0x0003dab0:	imove	i, 0x000000
+000594:0x0003dac0:	jump	0x03dad0
+000594:0x0003dac8:	inc	i
+000594:0x0003dad0:	ncalli	map<typename,float>.Count()
+000594:0x0003dad8:	cmpi	i, ret
+000594:0x0003dae8:	bge	0x03db38
+000596:0x0003daf0:	icall	map<typename,float>.GetElement(i)
+000596:0x0003daf8:	cmpf	ret, value
+000596:0x0003db08:	bne	0x03db30
+000598:0x0003db10:	icall	map<typename,float>.GetKey(i)
+000598:0x0003db18:	movea	ret, ret
+000599:0x0003db28:	jump	0x03db38
+000599:0x0003db30:	jump	0x03dac8
+000603:0x0003db38:	movea	ret, ret
+000603:0x0003db48:	rts
+000603:0x0003db50:	rts
+map<typename,int>::ReplaceKey()
+000584:0x0003df38:	icall	map<typename,int>.Contains(old_key)
+000584:0x0003df40:	cmpi	ret, _i0
+000584:0x0003df50:	beq	0x03df70
+000586:0x0003df58:	icall	map<typename,int>.Get(old_key)
+000586:0x0003df60:	icall	map<typename,int>.Set(new_key, ret)
+000587:0x0003df68:	icall	map<typename,int>.Remove(old_key)
+000587:0x0003df70:	rts
+map<typename,int>::GetKeyByValue()
+000594:0x0003dfb8:	imove	i, 0x000000
+000594:0x0003dfc8:	jump	0x03dfd8
+000594:0x0003dfd0:	inc	i
+000594:0x0003dfd8:	ncalli	map<typename,int>.Count()
+000594:0x0003dfe0:	cmpi	i, ret
+000594:0x0003dff0:	bge	0x03e040
+000596:0x0003dff8:	icall	map<typename,int>.GetElement(i)
+000596:0x0003e000:	cmpi	ret, value
+000596:0x0003e010:	bne	0x03e038
+000598:0x0003e018:	icall	map<typename,int>.GetKey(i)
+000598:0x0003e020:	movea	ret, ret
+000599:0x0003e030:	jump	0x03e040
+000599:0x0003e038:	jump	0x03dfd0
+000603:0x0003e040:	movea	ret, ret
+000603:0x0003e050:	rts
+000603:0x0003e058:	rts
+map<typename,string>::ReplaceKey()
+000584:0x0003e440:	icall	map<typename,string>.Contains(old_key)
+000584:0x0003e448:	cmpi	ret, _i0
+000584:0x0003e458:	beq	0x03e478
+000586:0x0003e460:	icall	map<typename,string>.Get(old_key)
+000586:0x0003e468:	icall	map<typename,string>.Set(new_key, ret)
+000587:0x0003e470:	icall	map<typename,string>.Remove(old_key)
+000587:0x0003e478:	rts
+map<typename,string>::GetKeyByValue()
+000594:0x0003e4c0:	imove	i, 0x000000
+000594:0x0003e4d0:	jump	0x03e4e0
+000594:0x0003e4d8:	inc	i
+000594:0x0003e4e0:	ncalli	map<typename,string>.Count()
+000594:0x0003e4e8:	cmpi	i, ret
+000594:0x0003e4f8:	bge	0x03e548
+000596:0x0003e500:	icall	map<typename,string>.GetElement(i)
+000596:0x0003e508:	cmps	ret, value
+000596:0x0003e518:	bne	0x03e540
+000598:0x0003e520:	icall	map<typename,string>.GetKey(i)
+000598:0x0003e528:	movea	ret, ret
+000599:0x0003e538:	jump	0x03e548
+000599:0x0003e540:	jump	0x03e4d8
+000603:0x0003e548:	movea	ret, ret
+000603:0x0003e558:	rts
+000603:0x0003e560:	rts
+map<typename,Class>::ReplaceKey()
+000584:0x0003e948:	icall	map<typename,Class>.Contains(old_key)
+000584:0x0003e950:	cmpi	ret, _i0
+000584:0x0003e960:	beq	0x03e980
+000586:0x0003e968:	icall	map<typename,Class>.Get(old_key)
+000586:0x0003e970:	icall	map<typename,Class>.Set(new_key, ret)
+000587:0x0003e978:	icall	map<typename,Class>.Remove(old_key)
+000587:0x0003e980:	rts
+map<typename,Class>::GetKeyByValue()
+000594:0x0003e9c8:	imove	i, 0x000000
+000594:0x0003e9d8:	jump	0x03e9e8
+000594:0x0003e9e0:	inc	i
+000594:0x0003e9e8:	ncalli	map<typename,Class>.Count()
+000594:0x0003e9f0:	cmpi	i, ret
+000594:0x0003ea00:	bge	0x03ea50
+000596:0x0003ea08:	icall	map<typename,Class>.GetElement(i)
+000596:0x0003ea10:	cmpc	ret, value
+000596:0x0003ea20:	bne	0x03ea48
+000598:0x0003ea28:	icall	map<typename,Class>.GetKey(i)
+000598:0x0003ea30:	movea	ret, ret
+000599:0x0003ea40:	jump	0x03ea50
+000599:0x0003ea48:	jump	0x03e9e0
+000603:0x0003ea50:	movea	ret, ret
+000603:0x0003ea60:	rts
+000603:0x0003ea68:	rts
+map<typename,typename>::ReplaceKey()
+000584:0x0003ee50:	icall	map<typename,typename>.Contains(old_key)
+000584:0x0003ee58:	cmpi	ret, _i0
+000584:0x0003ee68:	beq	0x03ee88
+000586:0x0003ee70:	icall	map<typename,typename>.Get(old_key)
+000586:0x0003ee78:	icall	map<typename,typename>.Set(new_key, ret)
+000587:0x0003ee80:	icall	map<typename,typename>.Remove(old_key)
+000587:0x0003ee88:	rts
+map<typename,typename>::GetKeyByValue()
+000594:0x0003eed0:	imove	i, 0x000000
+000594:0x0003eee0:	jump	0x03eef0
+000594:0x0003eee8:	inc	i
+000594:0x0003eef0:	ncalli	map<typename,typename>.Count()
+000594:0x0003eef8:	cmpi	i, ret
+000594:0x0003ef08:	bge	0x03ef58
+000596:0x0003ef10:	icall	map<typename,typename>.GetElement(i)
+000596:0x0003ef18:	cmpc	ret, value
+000596:0x0003ef28:	bne	0x03ef50
+000598:0x0003ef30:	icall	map<typename,typename>.GetKey(i)
+000598:0x0003ef38:	movea	ret, ret
+000599:0x0003ef48:	jump	0x03ef58
+000599:0x0003ef50:	jump	0x03eee8
+000603:0x0003ef58:	movea	ret, ret
+000603:0x0003ef68:	rts
+000603:0x0003ef70:	rts
+map<typename,vector>::ReplaceKey()
+000584:0x0003f3b8:	icall	map<typename,vector>.Contains(old_key)
+000584:0x0003f3c0:	cmpi	ret, _i0
+000584:0x0003f3d0:	beq	0x03f3f0
+000586:0x0003f3d8:	icall	map<typename,vector>.Get(old_key)
+000586:0x0003f3e0:	icall	map<typename,vector>.Set(new_key, ret)
+000587:0x0003f3e8:	icall	map<typename,vector>.Remove(old_key)
+000587:0x0003f3f0:	rts
+map<typename,vector>::GetKeyByValue()
+000594:0x0003f438:	imove	i, 0x000000
+000594:0x0003f448:	jump	0x03f458
+000594:0x0003f450:	inc	i
+000594:0x0003f458:	ncalli	map<typename,vector>.Count()
+000594:0x0003f460:	cmpi	i, ret
+000594:0x0003f470:	bge	0x03f4c0
+000596:0x0003f478:	icall	map<typename,vector>.GetElement(i)
+000596:0x0003f480:	cmpv	ret, value
+000596:0x0003f490:	bne	0x03f4b8
+000598:0x0003f498:	icall	map<typename,vector>.GetKey(i)
+000598:0x0003f4a0:	movea	ret, ret
+000599:0x0003f4b0:	jump	0x03f4c0
+000599:0x0003f4b8:	jump	0x03f450
+000603:0x0003f4c0:	movea	ret, ret
+000603:0x0003f4d0:	rts
+000603:0x0003f4d8:	rts
+array<ParamEnum>::InsertAll()
+000341:0x0003f878:	imove	i, 0x000000
+000341:0x0003f888:	jump	0x03f898
+000341:0x0003f890:	inc	i
+000341:0x0003f898:	ncalli	array<ParamEnum>.Count()
+000341:0x0003f8a0:	cmpi	i, ret
+000341:0x0003f8b0:	bge	0x03f8d0
+000343:0x0003f8b8:	icall	array<ParamEnum>.Get(i)
+000343:0x0003f8c0:	icall	array<ParamEnum>.Insert(ret)
+000343:0x0003f8c8:	jump	0x03f890
+000343:0x0003f8d0:	rts
+array<ParamEnum>::RemoveItem()
+000366:0x0003f8f8:	icall	array<ParamEnum>.Find(value)
+000366:0x0003f900:	move	remove_index, ret
+000368:0x0003f910:	cmpi	remove_index, _i0
+000368:0x0003f920:	blt	0x03f930
+000370:0x0003f928:	ncalli	array<ParamEnum>.Remove(remove_index)
+000370:0x0003f930:	rts
+array<ParamEnum>::Debug()
+000387:0x0003f978:	ncalli	array<ParamEnum>.Count()
+000387:0x0003f980:	icall	ToString(ret)
+000387:0x0003f988:	adds	@s01, _s'Array count: ', ret
+000387:0x0003f998:	moves	@s00, @s01
+000387:0x0003f9a8:	call	PrintString(@s00)
+000388:0x0003f9b8:	imove	i, 0x000000
+000388:0x0003f9c8:	jump	0x03f9d8
+000388:0x0003f9d0:	inc	i
+000388:0x0003f9d8:	ncalli	array<ParamEnum>.Count()
+000388:0x0003f9e0:	cmpi	i, ret
+000388:0x0003f9f0:	bge	0x03fab8
+000390:0x0003f9f8:	icall	array<ParamEnum>.Get(i)
+000390:0x0003fa00:	movec	item, ret
+000392:0x0003fa10:	cmpc	item, NULL
+000392:0x0003fa20:	beq	0x03fab0
+000394:0x0003fa28:	icall	ToString(i)
+000394:0x0003fa30:	adds	@s03, _s'[', ret
+000394:0x0003fa40:	moves	@s02, @s03
+000394:0x0003fa50:	adds	@s02, @s02, _s'] => '
+000394:0x0003fa60:	moves	@s01, @s02
+000394:0x0003fa70:	icall	ToString(item, _i0, _i0)
+000394:0x0003fa80:	adds	@s01, @s01, ret
+000394:0x0003fa90:	moves	@s00, @s01
+000394:0x0003faa0:	call	PrintString(@s00)
+000394:0x0003fab0:	jump	0x03f9d0
+000394:0x0003fab8:	rts
+array<ParamEnum>::GetRandomIndex()
+000411:0x0003fac0:	ncalli	array<ParamEnum>.Count()
+000411:0x0003fac8:	cmpi	ret, _i0
+000411:0x0003fad8:	ble	0x03fb08
+000413:0x0003fae0:	ncalli	array<ParamEnum>.Count()
+000413:0x0003fae8:	ncall	RandomInt(_i0, ret)
+000413:0x0003faf0:	move	ret, ret
+000413:0x0003fb00:	rts
+000416:0x0003fb08:	imove	ret, 0xffffffff
+000416:0x0003fb18:	rts
+000416:0x0003fb20:	rts
+array<ParamEnum>::GetRandomElement()
+000430:0x0003fb28:	call	array<ParamEnum>.GetRandomIndex()
+000430:0x0003fb30:	icall	array<ParamEnum>.Get(ret)
+000430:0x0003fb38:	movec	ret, ret
+000430:0x0003fb48:	rts
+000430:0x0003fb50:	rts
+array<ParamEnum>::SwapItems()
+000435:0x0003fb78:	icall	array<ParamEnum>.Get(item1_index)
+000435:0x0003fb80:	movec	item1, ret
+000436:0x0003fb90:	icall	array<ParamEnum>.Get(item2_index)
+000436:0x0003fb98:	icall	array<ParamEnum>.Set(item1_index, ret)
+000437:0x0003fba0:	icall	array<ParamEnum>.Set(item2_index, item1)
+000437:0x0003fba8:	rts
+ScriptedWidgetEventHandler::OnClick()
+//scripts/1_CoreExt/proto\enwidgets.c
+000363:0x0003fbe0:	imove	ret, 0x000000
+000363:0x0003fbf0:	rts
+000363:0x0003fbf8:	rts
+ScriptedWidgetEventHandler::OnModalResult()
+000367:0x0003fc00:	imove	ret, 0x000000
+000367:0x0003fc10:	rts
+000367:0x0003fc18:	rts
+ScriptedWidgetEventHandler::OnDoubleClick()
+000371:0x0003fc20:	imove	ret, 0x000000
+000371:0x0003fc30:	rts
+000371:0x0003fc38:	rts
+ScriptedWidgetEventHandler::OnSelect()
+000375:0x0003fc40:	imove	ret, 0x000000
+000375:0x0003fc50:	rts
+000375:0x0003fc58:	rts
+ScriptedWidgetEventHandler::OnItemSelected()
+000379:0x0003fc60:	imove	ret, 0x000000
+000379:0x0003fc70:	rts
+000379:0x0003fc78:	rts
+ScriptedWidgetEventHandler::OnFocus()
+000383:0x0003fc80:	imove	ret, 0x000000
+000383:0x0003fc90:	rts
+000383:0x0003fc98:	rts
+ScriptedWidgetEventHandler::OnFocusLost()
+000387:0x0003fca0:	imove	ret, 0x000000
+000387:0x0003fcb0:	rts
+000387:0x0003fcb8:	rts
+ScriptedWidgetEventHandler::OnMouseEnter()
+000391:0x0003fcc0:	imove	ret, 0x000000
+000391:0x0003fcd0:	rts
+000391:0x0003fcd8:	rts
+ScriptedWidgetEventHandler::OnMouseLeave()
+000395:0x0003fce0:	imove	ret, 0x000000
+000395:0x0003fcf0:	rts
+000395:0x0003fcf8:	rts
+ScriptedWidgetEventHandler::OnMouseWheel()
+000399:0x0003fd00:	imove	ret, 0x000000
+000399:0x0003fd10:	rts
+000399:0x0003fd18:	rts
+ScriptedWidgetEventHandler::OnMouseButtonDown()
+000403:0x0003fd20:	imove	ret, 0x000000
+000403:0x0003fd30:	rts
+000403:0x0003fd38:	rts
+ScriptedWidgetEventHandler::OnMouseButtonUp()
+000407:0x0003fd40:	imove	ret, 0x000000
+000407:0x0003fd50:	rts
+000407:0x0003fd58:	rts
+ScriptedWidgetEventHandler::OnController()
+000412:0x0003fd60:	imove	ret, 0x000000
+000412:0x0003fd70:	rts
+000412:0x0003fd78:	rts
+ScriptedWidgetEventHandler::OnKeyDown()
+000416:0x0003fd80:	imove	ret, 0x000000
+000416:0x0003fd90:	rts
+000416:0x0003fd98:	rts
+ScriptedWidgetEventHandler::OnKeyUp()
+000420:0x0003fda0:	imove	ret, 0x000000
+000420:0x0003fdb0:	rts
+000420:0x0003fdb8:	rts
+ScriptedWidgetEventHandler::OnKeyPress()
+000424:0x0003fdc0:	imove	ret, 0x000000
+000424:0x0003fdd0:	rts
+000424:0x0003fdd8:	rts
+ScriptedWidgetEventHandler::OnChange()
+000428:0x0003fde0:	imove	ret, 0x000000
+000428:0x0003fdf0:	rts
+000428:0x0003fdf8:	rts
+ScriptedWidgetEventHandler::OnDrag()
+000432:0x0003fe00:	imove	ret, 0x000000
+000432:0x0003fe10:	rts
+000432:0x0003fe18:	rts
+ScriptedWidgetEventHandler::OnDragging()
+000436:0x0003fe20:	imove	ret, 0x000000
+000436:0x0003fe30:	rts
+000436:0x0003fe38:	rts
+ScriptedWidgetEventHandler::OnDraggingOver()
+000440:0x0003fe40:	imove	ret, 0x000000
+000440:0x0003fe50:	rts
+000440:0x0003fe58:	rts
+ScriptedWidgetEventHandler::OnDrop()
+000444:0x0003fe60:	imove	ret, 0x000000
+000444:0x0003fe70:	rts
+000444:0x0003fe78:	rts
+ScriptedWidgetEventHandler::OnDropReceived()
+000448:0x0003fe80:	imove	ret, 0x000000
+000448:0x0003fe90:	rts
+000448:0x0003fe98:	rts
+ScriptedWidgetEventHandler::OnResize()
+000452:0x0003fea0:	imove	ret, 0x000000
+000452:0x0003feb0:	rts
+000452:0x0003feb8:	rts
+ScriptedWidgetEventHandler::OnChildAdd()
+000456:0x0003fec0:	imove	ret, 0x000000
+000456:0x0003fed0:	rts
+000456:0x0003fed8:	rts
+ScriptedWidgetEventHandler::OnChildRemove()
+000460:0x0003fee0:	imove	ret, 0x000000
+000460:0x0003fef0:	rts
+000460:0x0003fef8:	rts
+ScriptedWidgetEventHandler::OnUpdate()
+000464:0x0003ff00:	imove	ret, 0x000000
+000464:0x0003ff10:	rts
+000464:0x0003ff18:	rts
+ScriptedWidgetEventHandler::OnEvent()
+000468:0x0003ff20:	imove	ret, 0x000000
+000468:0x0003ff30:	rts
+000468:0x0003ff38:	rts
+bool::ToString()
+//scripts/1_CoreExt/proto\enconvert.c
+000005:0x0003ff80:	cmpi	value, _i0
+000005:0x0003ff90:	beq	0x03ffb8
+000005:0x0003ff98:	moves	ret, _s'true'
+000005:0x0003ffa8:	rts
+000005:0x0003ffb0:	jump	0x03ffb8
+000006:0x0003ffb8:	rts
+int::ToStringLen()
+000046:0x00040050:	icall	ToString(value)
+000046:0x00040058:	moves	str, ret
+000048:0x00040068:	ncall	Length(str)
+000048:0x00040070:	subi	l, len, ret
+000050:0x00040080:	cmpi	l, _i0
+000050:0x00040090:	ble	0x0400d8
+000050:0x00040098:	cmpi	l, ZERO_PAD_SIZE
+000050:0x000400a8:	bge	0x0400d8
+000051:0x000400b0:	cfv	@s01, m_ZeroPad[l]
+000051:0x000400c0:	adds	ret, @s01, str
+000051:0x000400d0:	rts
+000053:0x000400d8:	moves	ret, str
+000053:0x000400e8:	rts
+000053:0x000400f0:	rts
+vector::Perpend()
+000166:0x000400f8:	crossv	ret, value, Up
+000166:0x00040108:	rts
+000166:0x00040110:	rts
+vector::Direction()
+000179:0x00040170:	ifv	@f01, p2[0x000000]
+000179:0x00040180:	ifv	@f03, p1[0x000000]
+000179:0x00040190:	subf	@f01, @f01, @f03
+000179:0x000401a0:	itv	dir_vec[0x000000], @f01
+000180:0x000401b0:	ifv	@f01, p2[0x000001]
+000180:0x000401c0:	ifv	@f03, p1[0x000001]
+000180:0x000401d0:	subf	@f01, @f01, @f03
+000180:0x000401e0:	itv	dir_vec[0x000001], @f01
+000181:0x000401f0:	ifv	@f01, p2[0x000002]
+000181:0x00040200:	ifv	@f03, p1[0x000002]
+000181:0x00040210:	subf	@f01, @f01, @f03
+000181:0x00040220:	itv	dir_vec[0x000002], @f01
+000183:0x00040230:	movev	ret, dir_vec
+000183:0x00040240:	rts
+000183:0x00040248:	rts
+vector::Dot()
+000194:0x00040250:	ifv	@f03, v1[0x000000]
+000194:0x00040260:	ifv	@f05, v2[0x000000]
+000194:0x00040270:	mulf	@f03, @f03, @f05
+000194:0x00040280:	move	@f01, @f03
+000194:0x00040290:	ifv	@f06, v1[0x000001]
+000194:0x000402a0:	ifv	@f08, v2[0x000001]
+000194:0x000402b0:	mulf	@f06, @f06, @f08
+000194:0x000402c0:	move	@f03, @f06
+000194:0x000402d0:	addf	@f01, @f01, @f03
+000194:0x000402e0:	move	@f00, @f01
+000194:0x000402f0:	ifv	@f06, v1[0x000002]
+000194:0x00040300:	ifv	@f09, v2[0x000002]
+000194:0x00040310:	mulf	@f06, @f06, @f09
+000194:0x00040320:	move	@f01, @f06
+000194:0x00040330:	addf	ret, @f00, @f01
+000194:0x00040340:	rts
+000194:0x00040348:	rts
+vector::GetRelAngles()
+000209:0x000403d0:	imove	i, 0x000000
+000209:0x000403e0:	jump	0x0403f0
+000209:0x000403e8:	inc	i
+000209:0x000403f0:	cmpi	i, _i3
+000209:0x00040400:	bge	0x0404c0
+000210:0x00040408:	ffv	@f00, value[i]
+000210:0x00040418:	cmpf	@f00, _f180.000000
+000210:0x00040428:	ble	0x040460
+000211:0x00040430:	ffv	@f01, value[i]
+000211:0x00040440:	subf	@f01, @f01, _f360.000000
+000211:0x00040450:	ftv	value[i], @f01
+000212:0x00040460:	ffv	@f00, value[i]
+000212:0x00040470:	cmpf	@f00, _f-180.000000
+000212:0x00040480:	bge	0x0404b8
+000213:0x00040488:	ffv	@f01, value[i]
+000213:0x00040498:	addf	@f01, @f01, _f360.000000
+000213:0x000404a8:	ftv	value[i], @f01
+000213:0x000404b8:	jump	0x0403e8
+000215:0x000404c0:	movev	ret, value
+000215:0x000404d0:	rts
+000215:0x000404d8:	rts
+string::Contains()
+//scripts/1_CoreExt/proto\enstring.c
+000200:0x000404e0:	ncall	IndexOf(value, sample)
+000200:0x000404e8:	cmpi	ret, _i-1
+000200:0x000404f8:	beq	0x040518
+000200:0x00040500:	imove	ret, 0x000001
+000200:0x00040510:	jump	0x040528
+000200:0x00040518:	imove	ret, 0x000000
+000200:0x00040528:	rts
+000200:0x00040530:	rts
+string::Split()
+000309:0x00040688:	imove	txt_len, 0x000000
+000310:0x00040698:	imove	sep_pos, 0xffffffff
+000311:0x000406a8:	imove	nxt_sep_pos, 0x000000
+000312:0x000406b8:	moves	text, _s''
+000314:0x000406c8:	imove	line_end, 0x000000
+000315:0x000406d8:	cmpi	line_end, false
+000315:0x000406e8:	bne	0x0407f8
+000317:0x000406f0:	addi	@m01, sep_pos, txt_len
+000317:0x00040700:	move	@m00, @m01
+000317:0x00040710:	addi	@m00, @m00, _i1
+000317:0x00040720:	move	sep_pos, @m00
+000318:0x00040730:	ncall	IndexOfFrom(value, sep_pos, sample)
+000318:0x00040740:	move	nxt_sep_pos, ret
+000319:0x00040750:	cmpi	nxt_sep_pos, _i-1
+000319:0x00040760:	bne	0x040790
+000321:0x00040768:	ncall	Length(value)
+000321:0x00040770:	move	nxt_sep_pos, ret
+000322:0x00040780:	imove	line_end, 0x000001
+000325:0x00040790:	subi	@m00, nxt_sep_pos, sep_pos
+000325:0x000407a0:	move	txt_len, @m00
+000326:0x000407b0:	cmpi	txt_len, _i0
+000326:0x000407c0:	ble	0x0407f0
+000328:0x000407c8:	icall	Substring(value, sep_pos, txt_len)
+000328:0x000407d8:	moves	text, ret
+000329:0x000407e8:	icall	array<string>.Insert(text)
+000329:0x000407f0:	jump	0x0406d8
+000329:0x000407f8:	rts
+string::Get()
+000347:0x00040800:	icall	Substring(value, index, _i1)
+000347:0x00040810:	moves	ret, ret
+000347:0x00040820:	rts
+000347:0x00040828:	rts
+Math::RandomIntInclusive()
+//scripts/1_CoreExt/proto\enmath.c
+000058:0x00040830:	addi	@m02, max, _i1
+000058:0x00040840:	move	@m01, @m02
+000058:0x00040850:	ncall	RandomInt(min, @m01)
+000058:0x00040858:	move	ret, ret
+000058:0x00040868:	rts
+000058:0x00040870:	rts
+Math::RandomFloatInclusive()
+000076:0x000409f0:	ncall	Pow(_f2.000000, _f30.000000)
+000076:0x000409f8:	cfti	max_range, ret
+000077:0x00040a08:	ncall	RandomInt(_i0, max_range)
+000077:0x00040a10:	move	random_int, ret
+000078:0x00040a20:	citf	@f00, random_int
+000078:0x00040a30:	citf	@f01, max_range
+000078:0x00040a40:	divf	rand_float, @f00, @f01
+000079:0x00040a50:	subf	range, max, min
+000081:0x00040a60:	mulf	@f01, rand_float, range
+000081:0x00040a70:	move	@f00, @f01
+000081:0x00040a80:	addf	ret, min, @f00
+000081:0x00040a90:	rts
+000081:0x00040a98:	rts
+Math::RandomFloat01()
+000096:0x00040aa0:	call	RandomFloatInclusive(_f0.000000, _f1.000000)
+000096:0x00040ab0:	move	ret, ret
+000096:0x00040ac0:	rts
+000096:0x00040ac8:	rts
+Math::DiffAngle()
+000155:0x00040b18:	ncall	NormalizeAngle(angle1)
+000155:0x00040b20:	move	angle1, ret
+000156:0x00040b30:	ncall	NormalizeAngle(angle2)
+000156:0x00040b38:	move	angle2, ret
+000158:0x00040b48:	subf	diff, angle1, angle2
+000160:0x00040b58:	ncall	AbsFloat(diff)
+000160:0x00040b60:	cmpf	ret, _f180.000000
+000160:0x00040b70:	ble	0x040c18
+000162:0x00040b78:	cmpf	angle1, angle2
+000162:0x00040b88:	bge	0x040bd8
+000163:0x00040b90:	addf	@f01, angle1, _f360.000000
+000163:0x00040ba0:	move	@f00, @f01
+000163:0x00040bb0:	subf	@f00, @f00, angle2
+000163:0x00040bc0:	move	diff, @f00
+000163:0x00040bd0:	jump	0x040c18
+000165:0x00040bd8:	subf	@f01, angle1, _f360.000000
+000165:0x00040be8:	move	@f00, @f01
+000165:0x00040bf8:	subf	@f00, @f00, angle2
+000165:0x00040c08:	move	diff, @f00
+000168:0x00040c18:	move	ret, diff
+000168:0x00040c28:	rts
+000168:0x00040c30:	rts
+Math::Clamp()
+000312:0x00040c38:	cmpf	value, min
+000312:0x00040c48:	bge	0x040c68
+000314:0x00040c50:	move	ret, min
+000314:0x00040c60:	rts
+000317:0x00040c68:	cmpf	value, max
+000317:0x00040c78:	ble	0x040c98
+000319:0x00040c80:	move	ret, max
+000319:0x00040c90:	rts
+000322:0x00040c98:	move	ret, value
+000322:0x00040ca8:	rts
+000322:0x00040cb0:	rts
+Math::Min()
+000366:0x00040cb8:	cmpf	x, y
+000366:0x00040cc8:	bgt	0x040cf0
+000368:0x00040cd0:	move	ret, x
+000368:0x00040ce0:	rts
+000368:0x00040ce8:	jump	0x040d08
+000372:0x00040cf0:	move	ret, y
+000372:0x00040d00:	rts
+000372:0x00040d08:	rts
+Math::Max()
+000389:0x00040d10:	cmpf	x, y
+000389:0x00040d20:	blt	0x040d48
+000391:0x00040d28:	move	ret, x
+000391:0x00040d38:	rts
+000391:0x00040d40:	jump	0x040d60
+000395:0x00040d48:	move	ret, y
+000395:0x00040d58:	rts
+000395:0x00040d60:	rts
+VectortoRGBA()
+//scripts/1_CoreExt/proto\proto.c
+000266:0x00040f58:	ifv	@f01, vec[0x000000]
+000266:0x00040f68:	move	x, @f01
+000267:0x00040f78:	ifv	@f01, vec[0x000001]
+000267:0x00040f88:	move	y, @f01
+000268:0x00040f98:	ifv	@f01, vec[0x000002]
+000268:0x00040fa8:	move	z, @f01
+000270:0x00040fb8:	mulf	@f01, x, _f127.000000
+000270:0x00040fc8:	move	@f00, @f01
+000270:0x00040fd8:	addf	@f00, @f00, _f128.000000
+000270:0x00040fe8:	move	x, @f00
+000271:0x00040ff8:	mulf	@f01, y, _f127.000000
+000271:0x00041008:	move	@f00, @f01
+000271:0x00041018:	addf	@f00, @f00, _f128.000000
+000271:0x00041028:	move	y, @f00
+000272:0x00041038:	mulf	@f01, z, _f127.000000
+000272:0x00041048:	move	@f00, @f01
+000272:0x00041058:	addf	@f00, @f00, _f128.000000
+000272:0x00041068:	move	z, @f00
+000273:0x00041078:	mulf	@f00, h, _f255.000000
+000273:0x00041088:	move	h, @f00
+000275:0x00041098:	cfti	@m00, h
+000275:0x000410a8:	lsli	@m00, @m00, _i24
+000275:0x000410b8:	move	a, @m00
+000276:0x000410c8:	cfti	@m00, x
+000276:0x000410d8:	lsli	@m00, @m00, _i16
+000276:0x000410e8:	move	r, @m00
+000277:0x000410f8:	cfti	@m00, y
+000277:0x00041108:	lsli	@m00, @m00, _i8
+000277:0x00041118:	move	g, @m00
+000278:0x00041128:	cfti	b, z
+000280:0x00041138:	ori	@m01, r, g
+000280:0x00041148:	move	@m00, @m01
+000280:0x00041158:	ori	@m00, @m00, b
+000280:0x00041168:	move	@m01, @m00
+000280:0x00041178:	ori	ret, @m01, a
+000280:0x00041188:	rts
+000280:0x00041190:	rts
+ARGB()
+000287:0x00041198:	lsli	@m00, a, _i24
+000287:0x000411a8:	move	a, @m00
+000288:0x000411b8:	lsli	@m00, r, _i16
+000288:0x000411c8:	move	r, @m00
+000289:0x000411d8:	lsli	@m00, g, _i8
+000289:0x000411e8:	move	g, @m00
+000290:0x000411f8:	ori	@m01, a, r
+000290:0x00041208:	move	@m00, @m01
+000290:0x00041218:	ori	@m00, @m00, g
+000290:0x00041228:	move	@m01, @m00
+000290:0x00041238:	ori	ret, @m01, b
+000290:0x00041248:	rts
+000290:0x00041250:	rts
+ARGBF()
+000297:0x00041258:	mulf	@f01, fa, _f255.000000
+000297:0x00041268:	move	@f00, @f01
+000297:0x00041278:	cfti	a, @f00
+000297:0x00041288:	mulf	@f01, fr, _f255.000000
+000297:0x00041298:	move	@f00, @f01
+000297:0x000412a8:	cfti	r, @f00
+000297:0x000412b8:	mulf	@f01, fg, _f255.000000
+000297:0x000412c8:	move	@f00, @f01
+000297:0x000412d8:	cfti	g, @f00
+000297:0x000412e8:	mulf	@f01, fb, _f255.000000
+000297:0x000412f8:	move	@f00, @f01
+000297:0x00041308:	cfti	b, @f00
+000297:0x00041318:	call	ARGB(a, r, g, b)
+000297:0x00041328:	move	ret, ret
+000297:0x00041338:	rts
+000297:0x00041340:	rts
+AWHITE()
+000303:0x00041368:	lsli	@m01, a, _i24
+000303:0x00041378:	move	@m00, @m01
+000303:0x00041388:	ori	ret, @m00, _i16777215
+000303:0x00041398:	rts
+000303:0x000413a0:	rts
+LerpARGB()
+000312:0x00041480:	asri	@m01, c1, _i8
+000312:0x00041490:	move	@m00, @m01
+000312:0x000414a0:	andi	@m00, @m00, cmask
+000312:0x000414b0:	move	cb1, @m00
+000313:0x000414c0:	asri	@m01, c2, _i8
+000313:0x000414d0:	move	@m00, @m01
+000313:0x000414e0:	andi	@m00, @m00, cmask
+000313:0x000414f0:	move	cb2, @m00
+000314:0x00041500:	addi	@m01, cb1, cb2
+000314:0x00041510:	move	@m00, @m01
+000314:0x00041520:	asri	@m00, @m00, _i1
+000314:0x00041530:	move	cb1, @m00
+000316:0x00041540:	andi	@m00, c1, cmask
+000316:0x00041550:	move	c1, @m00
+000317:0x00041560:	andi	@m00, c2, cmask
+000317:0x00041570:	move	c2, @m00
+000318:0x00041580:	addi	@m01, c1, c2
+000318:0x00041590:	move	@m00, @m01
+000318:0x000415a0:	asri	@m00, @m00, _i1
+000318:0x000415b0:	move	c1, @m00
+000320:0x000415c0:	lsli	@m01, cb1, _i8
+000320:0x000415d0:	move	@m00, @m01
+000320:0x000415e0:	ori	ret, @m00, c1
+000320:0x000415f0:	rts
+000320:0x000415f8:	rts
+String()
+//scripts/1_CoreExt/proto\enscript.c
+000274:0x00041600:	moves	ret, s
+000274:0x00041610:	rts
+000274:0x00041618:	rts
+PrintString()
+000280:0x00041620:	icall	Print(s)
+000280:0x00041628:	rts
+Math3D::ClipLine()
+//scripts/1_CoreExt/proto\enmath3d.c
+000030:0x00041710:	dotv	@f00, start, norm
+000030:0x00041720:	move	d1, @f00
+000031:0x00041730:	subf	@f00, d1, d
+000031:0x00041740:	move	d1, @f00
+000033:0x00041750:	dotv	@f00, end, norm
+000033:0x00041760:	move	d2, @f00
+000034:0x00041770:	subf	@f00, d2, d
+000034:0x00041780:	move	d2, @f00
+000036:0x00041790:	subf	@f00, d1, d2
+000036:0x000417a0:	move	d, @f00
+000038:0x000417b0:	cmpf	d1, _f0.000000
+000038:0x000417c0:	bge	0x0417f0
+000039:0x000417c8:	addf	@f00, d1, _f0.100000
+000039:0x000417d8:	move	d1, @f00
+000039:0x000417e8:	jump	0x041810
+000041:0x000417f0:	subf	@f00, d1, _f0.100000
+000041:0x00041800:	move	d1, @f00
+000043:0x00041810:	divf	@f00, d1, d
+000043:0x00041820:	move	d, @f00
+000046:0x00041830:	cmpf	d, _f0.000000
+000046:0x00041840:	bge	0x041858
+000046:0x00041848:	imove	d, 0.00000
+000047:0x00041858:	cmpf	d, _f1.000000
+000047:0x00041868:	ble	0x041880
+000047:0x00041870:	imove	d, 1.00000
+000049:0x00041880:	subv	@v00, end, start
+000049:0x00041890:	movev	vec, @v00
+000050:0x000418a0:	scalev	@v00, vec, d
+000050:0x000418b0:	movev	vec, @v00
+000052:0x000418c0:	addv	ret, vec, start
+000052:0x000418d0:	rts
+000052:0x000418d8:	rts
+Math3D::MatrixIdentity4()
+000170:0x00041970:	ctv	mat[_i0], _v<1.000000,0.000000,0.000000>
+000171:0x00041980:	ctv	mat[_i1], _v<0.000000,1.000000,0.000000>
+000172:0x00041990:	ctv	mat[_i2], _v<0.000000,0.000000,1.000000>
+000173:0x000419a0:	ctv	mat[_i3], Zero
+000173:0x000419b0:	rts
+Math3D::MatrixIdentity3()
+000189:0x00041a48:	ctv	mat[_i0], _v<1.000000,0.000000,0.000000>
+000190:0x00041a58:	ctv	mat[_i1], _v<0.000000,1.000000,0.000000>
+000191:0x00041a68:	ctv	mat[_i2], _v<0.000000,0.000000,1.000000>
+000191:0x00041a78:	rts
+Math3D::ScaleMatrix()
+000209:0x00041b38:	itv	v0[0x000000], scale
+000210:0x00041b48:	itv	v1[0x000001], scale
+000211:0x00041b58:	itv	v2[0x000002], scale
+000212:0x00041b68:	ctv	mat[_i0], v0
+000213:0x00041b78:	ctv	mat[_i1], v1
+000214:0x00041b88:	ctv	mat[_i2], v2
+000214:0x00041b98:	rts
+Math3D::QuatIdentity()
+000230:0x00041ba0:	itv	q[0x000000], _f0.000000
+000231:0x00041bb0:	itv	q[0x000001], _f0.000000
+000232:0x00041bc0:	itv	q[0x000002], _f0.000000
+000233:0x00041bd0:	itv	q[0x000003], _f1.000000
+000233:0x00041be0:	rts
+Math3D::QuatCopy()
+000251:0x00041be8:	ifv	@f01, s[0x000000]
+000251:0x00041bf8:	itv	d[0x000000], @f01
+000252:0x00041c08:	ifv	@f01, s[0x000001]
+000252:0x00041c18:	itv	d[0x000001], @f01
+000253:0x00041c28:	ifv	@f01, s[0x000002]
+000253:0x00041c38:	itv	d[0x000002], @f01
+000254:0x00041c48:	ifv	@f01, s[0x000003]
+000254:0x00041c58:	itv	d[0x000003], @f01
+000254:0x00041c68:	rts
+Math3D::CheckBoundBox()
+000349:0x00041c70:	ifv	@f00, mins1[0x000000]
+000349:0x00041c80:	ifv	@f02, maxs2[0x000000]
+000349:0x00041c90:	cmpf	@f00, @f02
+000349:0x00041ca0:	bgt	0x041dc0
+000349:0x00041ca8:	ifv	@f00, mins1[0x000001]
+000349:0x00041cb8:	ifv	@f02, maxs2[0x000001]
+000349:0x00041cc8:	cmpf	@f00, @f02
+000349:0x00041cd8:	bgt	0x041dc0
+000349:0x00041ce0:	ifv	@f00, mins1[0x000002]
+000349:0x00041cf0:	ifv	@f02, maxs2[0x000002]
+000349:0x00041d00:	cmpf	@f00, @f02
+000349:0x00041d10:	bgt	0x041dc0
+000349:0x00041d18:	ifv	@f00, maxs1[0x000000]
+000349:0x00041d28:	ifv	@f02, mins2[0x000000]
+000349:0x00041d38:	cmpf	@f00, @f02
+000349:0x00041d48:	blt	0x041dc0
+000349:0x00041d50:	ifv	@f00, maxs1[0x000001]
+000349:0x00041d60:	ifv	@f02, mins2[0x000001]
+000349:0x00041d70:	cmpf	@f00, @f02
+000349:0x00041d80:	blt	0x041dc0
+000349:0x00041d88:	ifv	@f00, maxs1[0x000002]
+000349:0x00041d98:	ifv	@f02, mins2[0x000002]
+000349:0x00041da8:	cmpf	@f00, @f02
+000349:0x00041db8:	bge	0x041dd8
+000350:0x00041dc0:	imove	ret, 0x000000
+000350:0x00041dd0:	rts
+000352:0x00041dd8:	imove	ret, 0x000001
+000352:0x00041de8:	rts
+000352:0x00041df0:	rts
+Math3D::GetRandomDir()
+000366:0x00041e78:	call	RandomFloatInclusive(_f-1.000000, _f1.000000)
+000366:0x00041e88:	move	x, ret
+000367:0x00041e98:	imove	y, 0.00000
+000368:0x00041ea8:	call	RandomFloatInclusive(_f-1.000000, _f1.000000)
+000368:0x00041eb8:	move	z, ret
+000370:0x00041ec8:	ncall	Vector(x, y, z)
+000370:0x00041ed8:	icall	Normalized(ret)
+000370:0x00041ee0:	movev	ret, ret
+000370:0x00041ef0:	rts
+000370:0x00041ef8:	rts
+Error()
+//scripts/1_CoreExt/proto\endebug.c
+000038:0x00041f00:	ncall	Error2(_s'', err)
+000038:0x00041f08:	rts
+Shape::CreateArrow()
+000096:0x000420c0:	subv	dir, to, from
+000097:0x000420d0:	icall	Normalize(dir)
+000098:0x000420d8:	scalev	dir1, dir, size
+000099:0x000420e8:	mulf	@f00, size, _f0.500000
+000099:0x000420f8:	move	size, @f00
+000101:0x00042108:	call	Perpend(dir)
+000101:0x00042118:	scalev	dir2, ret, size
+000104:0x00042128:	ctv	pts[_i0], from
+000105:0x00042138:	ctv	pts[_i1], to
+000106:0x00042148:	subv	@v01, to, dir1
+000106:0x00042158:	movev	@v00, @v01
+000106:0x00042168:	subv	@v00, @v00, dir2
+000106:0x00042178:	ctv	pts[_i2], @v00
+000107:0x00042188:	subv	@v01, to, dir1
+000107:0x00042198:	movev	@v00, @v01
+000107:0x000421a8:	addv	@v00, @v00, dir2
+000107:0x000421b8:	ctv	pts[_i3], @v00
+000108:0x000421c8:	ctv	pts[_i4], to
+000110:0x000421d8:	ncall	CreateLines(color, flags, pts, _i5)
+000110:0x000421e8:	movec	ret, ret
+000110:0x000421f8:	rts
+000110:0x00042200:	rts
+Shape::CreateBridgeArrow()
+000115:0x00042340:	subv	dir, to, from
+000116:0x00042350:	icall	Normalize(dir)
+000118:0x00042358:	subf	@f01, _f0.000000, size
+000118:0x00042368:	ncall	Vector(_f0.000000, _f0.000000, @f01)
+000118:0x00042378:	movev	dir1, ret
+000119:0x00042388:	mulf	@f00, size, _f0.500000
+000119:0x00042398:	move	size, @f00
+000121:0x000423a8:	call	Perpend(dir)
+000121:0x000423b8:	scalev	dir2, ret, size
+000124:0x000423c8:	ctv	pts[_i0], from
+000125:0x000423d8:	addv	@v00, from, _v<0.000000,0.000000,1.000000>
+000125:0x000423e8:	ctv	pts[_i1], @v00
+000126:0x000423f8:	addv	@v00, to, _v<0.000000,0.000000,1.000000>
+000126:0x00042408:	ctv	pts[_i2], @v00
+000127:0x00042418:	ctv	pts[_i3], to
+000128:0x00042428:	subv	@v01, to, dir1
+000128:0x00042438:	movev	@v00, @v01
+000128:0x00042448:	subv	@v00, @v00, dir2
+000128:0x00042458:	ctv	pts[_i4], @v00
+000129:0x00042468:	subv	@v01, to, dir1
+000129:0x00042478:	movev	@v00, @v01
+000129:0x00042488:	addv	@v00, @v00, dir2
+000129:0x00042498:	ctv	pts[_i5], @v00
+000130:0x000424a8:	ctv	pts[_i6], to
+000132:0x000424b8:	ncall	CreateLines(color, flags, pts, _i7)
+000132:0x000424c8:	movec	ret, ret
+000132:0x000424d8:	rts
+000132:0x000424e0:	rts
+Shape::CreateMatrix()
+000137:0x00042698:	cfv	@v01, mat[_i3]
+000137:0x000426a8:	movev	org, @v01
+000138:0x000426b8:	imove	@m01, 0x000012
+000138:0x000426c8:	move	@m00, @m01
+000138:0x000426d8:	ori	@m00, @m00, _i8
+000138:0x000426e8:	move	@m01, @m00
+000138:0x000426f8:	ori	flags, @m01, _i32
+000139:0x00042708:	cfv	@v03, mat[_i0]
+000139:0x00042718:	scalev	@v03, @v03, _f0.500000
+000139:0x00042728:	movev	@v01, @v03
+000139:0x00042738:	addv	@v01, @v01, org
+000139:0x00042748:	movev	@v00, @v01
+000139:0x00042758:	ncall	Create(_i2, _i-65536, flags, org, @v00)
+000140:0x00042768:	cfv	@v03, mat[_i1]
+000140:0x00042778:	scalev	@v03, @v03, _f0.500000
+000140:0x00042788:	movev	@v01, @v03
+000140:0x00042798:	addv	@v01, @v01, org
+000140:0x000427a8:	movev	@v00, @v01
+000140:0x000427b8:	ncall	Create(_i2, _i-16711936, flags, org, @v00)
+000141:0x000427c8:	cfv	@v03, mat[_i2]
+000141:0x000427d8:	scalev	@v03, @v03, _f0.500000
+000141:0x000427e8:	movev	@v01, @v03
+000141:0x000427f8:	addv	@v01, @v01, org
+000141:0x00042808:	movev	@v00, @v01
+000141:0x00042818:	ncall	Create(_i2, _i-16776961, flags, org, @v00)
+000141:0x00042828:	rts
+PhysicsGeomDef::PhysicsGeomDef()
+//scripts/1_CoreExt/proto\enphysics.c
+000036:0x00042830:	imove	@m01, 0x000000
+000036:0x00042840:	ncall	Vector(_f1.000000, _f0.000000, _f0.000000)
+000036:0x00042850:	ctv	Frame[@m01], ret
+000036:0x00042860:	inc	@m01
+000036:0x00042868:	pushv	ret
+000036:0x00042870:	ncall	Vector(_f0.000000, _f1.000000, _f0.000000)
+000036:0x00042880:	movev	@v01, ret
+000036:0x00042890:	popv	ret
+000036:0x00042898:	ctv	Frame[@m01], @v01
+000036:0x000428a8:	inc	@m01
+000036:0x000428b0:	pushv	ret
+000036:0x000428b8:	ncall	Vector(_f0.000000, _f0.000000, _f1.000000)
+000036:0x000428c8:	movev	@v01, ret
+000036:0x000428d8:	popv	ret
+000036:0x000428e0:	ctv	Frame[@m01], @v01
+000036:0x000428f0:	inc	@m01
+000036:0x000428f8:	pushv	ret
+000036:0x00042900:	ncall	Vector(_f0.000000, _f0.000000, _f0.000000)
+000036:0x00042910:	movev	@v01, ret
+000036:0x00042920:	popv	ret
+000036:0x00042928:	ctv	Frame[@m01], @v01
+000036:0x00042938:	inc	@m01
+000036:0x00042940:	imove	ParentNode, 0xffffffff
+000038:0x00042950:	moves	Name, name
+000039:0x00042960:	movea	Geometry, geom
+000040:0x00042970:	moves	MaterialName, materialName
+000041:0x00042980:	move	LayerMask, layerMask
+000041:0x00042990:	rts
+ParamEnum::ParamEnum()
+//scripts/1_CoreExt/proto\enentity.c
+000653:0x00042998:	moves	m_Key, key
+000654:0x000429a8:	moves	m_Value, value
+000655:0x000429b8:	moves	m_Desc, desc
+000655:0x000429c8:	rts
+ParamEnumArray::~ParamEnumArray()
+000663:0x000429f0:	imove	i, 0x000000
+000663:0x00042a00:	jump	0x042a10
+000663:0x00042a08:	inc	i
+000663:0x00042a10:	ncalli	ParamEnumArray.Count()
+000663:0x00042a18:	cmpi	i, ret
+000663:0x00042a28:	bge	0x042a48
+000665:0x00042a30:	icall	ParamEnumArray.Get(i)
+000665:0x00042a38:	delete	ret
+000665:0x00042a40:	jump	0x042a08
+000665:0x00042a48:	rts
+Attribute::Attribute()
+000681:0x00042a50:	moves	m_DefValue, defvalue
+000682:0x00042a60:	moves	m_UiWidget, uiwidget
+000683:0x00042a70:	moves	m_RangeScale, rangescale
+000684:0x00042a80:	moves	m_Desc, desc
+000685:0x00042a90:	movem	m_Enums, enums
+000685:0x00042aa0:	rts
+EditorAttribute::EditorAttribute()
+000703:0x00042aa8:	moves	m_Style, style
+000704:0x00042ab8:	moves	m_Category, category
+000705:0x00042ac8:	movev	m_SizeMin, sizeMin
+000706:0x00042ad8:	movev	m_SizeMax, sizeMax
+000707:0x00042ae8:	moves	m_Color, color
+000708:0x00042af8:	moves	m_Color2, color2
+000709:0x00042b08:	move	m_Visible, visible
+000710:0x00042b18:	move	m_Insertable, insertable
+000711:0x00042b28:	move	m_DynamicBox, dynamicBox
+000711:0x00042b38:	rts
+#InitGlobals()
+//scripts/1_CoreExt/script.c
+000006:0x00042d30:	imove	INPUT_DEVICE_MOUSE_AXIS, 0x110000
+000006:0x00042d40:	imove	INPUT_DEVICE_STICK_AXIS, 0x210000
+000006:0x00042d50:	imove	INPUT_DEVICE_STICK_POV, 0x220000
+000006:0x00042d60:	imove	INPUT_DEVICE_GAMEPAD_AXIS, 0x510000
+000006:0x00042d70:	imove	@m00, 0x000000
+000006:0x00042d80:	ctv	m_ZeroPad[@m00], _s''
+000006:0x00042d90:	inc	@m00
+000006:0x00042d98:	ctv	m_ZeroPad[@m00], _s'0'
+000006:0x00042da8:	inc	@m00
+000006:0x00042db0:	ctv	m_ZeroPad[@m00], _s'00'
+000006:0x00042dc0:	inc	@m00
+000006:0x00042dc8:	ctv	m_ZeroPad[@m00], _s'000'
+000006:0x00042dd8:	inc	@m00
+000006:0x00042de0:	ctv	m_ZeroPad[@m00], _s'0000'
+000006:0x00042df0:	inc	@m00
+000006:0x00042df8:	ctv	m_ZeroPad[@m00], _s'00000'
+000006:0x00042e08:	inc	@m00
+000006:0x00042e10:	ctv	m_ZeroPad[@m00], _s'000000'
+000006:0x00042e20:	inc	@m00
+000006:0x00042e28:	ctv	m_ZeroPad[@m00], _s'0000000'
+000006:0x00042e38:	inc	@m00
+000006:0x00042e40:	imove	cmask, 0xff00ff
+000006:0x00042e50:	rts

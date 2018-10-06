@@ -1,0 +1,18 @@
+Game::IsDebug()
+//scripts/2_GameLibExt/gamelib.c
+000017:0x00000688:	move	ret, m_Debug
+000017:0x00000698:	rts
+000017:0x000006a0:	rts
+Game::SetDebug()
+000022:0x000006a8:	move	m_Debug, isDebug
+000022:0x000006b8:	rts
+Game::OnEvent()
+000033:0x000006e0:	icall	Print(_s'OnEvent')
+000033:0x000006e8:	rts
+Game::OnAfterInit()
+000041:0x00000710:	icall	Print(_s'OnAfterInit')
+000041:0x00000718:	rts
+Game::OnGameStart()
+000068:0x00000720:	imove	ret, 0x000001
+000068:0x00000730:	rts
+000068:0x00000738:	rts
